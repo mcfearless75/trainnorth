@@ -134,11 +134,37 @@
   margin-bottom: var(--space-5);
 }
 
+/* The location label is short and must never break; the strapline beside it is
+   long and is allowed to wrap. */
+.hero__eyebrow > .eyebrow:first-child { white-space: nowrap; }
+
 .hero__rule {
   flex: 1;
   max-width: 6rem;
   height: 1px;
   background: linear-gradient(90deg, var(--signal), transparent);
+}
+
+/* Narrow screens: stack the two labels instead of letting them compete for a
+   single row. Side by side, the location gets squeezed to a two-word column
+   and reads as broken rather than as a place name. */
+@media (max-width: 44rem) {
+  .hero__eyebrow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .hero__rule {
+    width: 3.5rem;
+    max-width: none;
+    flex: none;
+    order: 3;
+    margin-top: var(--space-1);
+  }
+
+  /* Slightly tighter tracking so the longer label holds two lines at most. */
+  .hero__eyebrow > .eyebrow { letter-spacing: 0.14em; }
 }
 
 .hero h1 { margin-bottom: var(--space-5); }
