@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Base — reset, typography, atmosphere, chrome, primitives
+   Base - reset, typography, atmosphere, chrome, primitives
    ========================================================================== */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -130,7 +130,7 @@ a { color: inherit; }
 main { position: relative; z-index: 1; }
 
 /* --- Compliance ticker ---------------------------------------------------
-   Permanently visible. On a research-use-only site this is not decoration —
+   Permanently visible. On a research-use-only site this is not decoration,
    it is the licence to operate, so it sits above the masthead and never
    scrolls away with it. */
 
@@ -220,7 +220,7 @@ main { position: relative; z-index: 1; }
   text-transform: uppercase;
 }
 
-/* The colon is the one piece of brand punctuation — tinting it is what stops
+/* The colon is the one piece of brand punctuation - tinting it is what stops
    TRAINNORTH:LABS reading as a typo. */
 .wordmark__sep {
   color: var(--signal);
@@ -288,7 +288,7 @@ main { position: relative; z-index: 1; }
   .nav { display: none; }
 }
 
-/* Scroll progress rail — the reel counter for a documentary structure. */
+/* Scroll progress rail - the reel counter for a documentary structure. */
 .progress-rail {
   position: absolute;
   left: 0;

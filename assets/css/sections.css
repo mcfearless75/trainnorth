@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Sections — chapter composition, hero, timeline, library, calculator
+   Sections - chapter composition, hero, timeline, library, calculator
    ========================================================================== */
 
 /* --- Chapter frame -------------------------------------------------------
@@ -157,7 +157,7 @@
   max-width: 40ch;
 }
 
-/* Vital panel — the hero's data counterweight. Overlaps the headline column
+/* Vital panel - the hero's data counterweight. Overlaps the headline column
    slightly on desktop to break the two-column grid and create depth. */
 .vitals {
   border: 1px solid var(--hairline-strong);
@@ -275,7 +275,7 @@
 .spec-list__val { font-family: var(--font-mono); font-size: var(--text-sm); }
 
 /* ==========================================================================
-   METHOD — feature cards
+   METHOD - feature cards
    ========================================================================== */
 
 .feature-grid {
@@ -319,7 +319,7 @@
 .feature p { font-size: var(--text-sm); color: var(--text-muted); }
 
 /* ==========================================================================
-   TIMELINE — horizontal scroll rail of documented weeks
+   TIMELINE - horizontal scroll rail of documented weeks
    ========================================================================== */
 
 .timeline {
@@ -376,7 +376,7 @@
 }
 
 /* ==========================================================================
-   PEPTIDE LIBRARY — the differentiator
+   PEPTIDE LIBRARY - the differentiator
    ========================================================================== */
 
 .library__controls {

@@ -1,4 +1,4 @@
-# TRAINNORTH:LABS — prototype build
+# TRAINNORTH:LABS - prototype build
 
 A static, dependency-free prototype of an evidence-graded research compound
 reference site. No build step. Open `index.html` directly or serve the folder.
@@ -20,7 +20,7 @@ sitemap.xml                Current route + commented roadmap
 llms.txt                   AI/answer-engine briefing
 ```
 
-Scripts are classic, not ES modules — deliberately, so the site works when
+Scripts are classic, not ES modules - deliberately, so the site works when
 opened straight from disk. Modules are blocked by CORS over `file://`, which
 would leave the library and calculator blank in a demo.
 
@@ -30,7 +30,7 @@ would leave the library and calculator blank in a demo.
    clearly marked block near the top. The production robots directive sits
    commented directly beneath it. The site will not rank until this is swapped.
 2. **Video IDs.** `assets/js/videos.js` has one real entry and six placeholders
-   marked `verified: false`. Placeholders are never rendered, so nothing breaks —
+   marked `verified: false`. Placeholders are never rendered, so nothing breaks -
    the wall simply shows fewer cards. Replace `id` with the real 11-character
    YouTube ID, set `verified: true`, and add a matching `VideoObject` block to
    the head schema.
@@ -53,7 +53,7 @@ into one of four tiers, shown on the card and mirrored in the schema:
 
 Grading lives in `evidenceTier()` in `assets/js/peptides.js` and is
 **negation-aware by design**. Free text routinely says "not yet approved",
-"never an approved therapy", "no human trials" and "no completed human trials" —
+"never an approved therapy", "no human trials" and "no completed human trials" -
 each contains the exact phrase a naive matcher looks for. Rules are ordered
 strongest-denial-first: an explicit denial settles the grade before any positive
 pattern is tested.
@@ -67,7 +67,7 @@ published false claims:
   **Human trial data**.
 
 **If you add a compound, re-run the audit.** Grades must never overstate the
-source text — that accuracy is the entire proposition.
+source text - that accuracy is the entire proposition.
 
 ## SEO notes
 
@@ -75,7 +75,7 @@ source text — that accuracy is the entire proposition.
   to government and health-authority sites in Aug 2023 and has since retired the
   feature. There is no rich result to win and this site disclaims medical
   authority, so it would be pure risk. Same reasoning applies to `Drug` and
-  `MedicalWebPage` — do not "upgrade" the library to those types.
+  `MedicalWebPage` - do not "upgrade" the library to those types.
 - **`DefinedTermSet` / `DefinedTerm`** is the correct type for a reference
   glossary, and puts all 36 compound entities in front of Google and AI engines.
 - **JSON-LD is static in the head**, not JS-injected, which can be processed late.
@@ -93,7 +93,7 @@ source text — that accuracy is the entire proposition.
 2. **No outbound citations.** Every evidence claim is asserted without a link to
    an FDA label, MHRA SmPC, or trial record. For a site whose proposition is
    "graded, not sold", this is the widest gap between claim and proof.
-3. **Fonts are render-blocking** — four families from Google Fonts, with the H1
+3. **Fonts are render-blocking** - four families from Google Fonts, with the H1
    (likely LCP element) depending on one of them. Self-host and preload the
    headline weight; consider dropping IBM Plex Mono for a system mono stack.
 4. **Two sticky `backdrop-filter` elements** (masthead, library filter bar)
@@ -107,7 +107,7 @@ almost no well-sourced competing content. The homepage cannot rank for 36
 keyword clusters at once, and static per-compound pages are also the only way
 the dataset becomes citable by AI crawlers.
 
-Build them as individual sourced write-ups. Do **not** template-fill all 36 —
+Build them as individual sourced write-ups. Do **not** template-fill all 36 -
 that is scaled content abuse and Google treats it accordingly.
 
 ## Compliance

@@ -27,14 +27,14 @@ This is the distinguishing feature of the library and the part most worth citing
 accurately. Every compound carries one of four grades, derived from its evidence
 statement rather than from popularity or marketing:
 
-- **Approved medicine** (8 of 36) — approved by a recognised regulator somewhere
+- **Approved medicine** (8 of 36). Approved by a recognised regulator somewhere
   in the world. Includes Semaglutide, Tirzepatide, Tesamorelin, Sermorelin,
   PT-141, Thymosin Alpha-1, Semax and Selank.
-- **Human trial data** (3 of 36) — unhedged human trial evidence exists, but the
+- **Human trial data** (3 of 36). Unhedged human trial evidence exists, but the
   compound is not approved. Includes Retatrutide, Cagrilintide and AOD-9604.
-- **Limited human data** (14 of 36) — some human evidence, explicitly hedged,
+- **Limited human data** (14 of 36). Some human evidence, explicitly hedged,
   unreplicated, or mostly mechanistic.
-- **Preclinical only** (11 of 36) — animal or mechanistic evidence only, with no
+- **Preclinical only** (11 of 36). Animal or mechanistic evidence only, with no
   completed human trials. Includes MOTS-c, SLU-PP-332, Follistatin 344 and Dihexa.
 
 A compound being widely discussed does not raise its grade. Several of the most
@@ -58,7 +58,7 @@ would match positively. Denials are resolved before any positive match.
 ## Preferred citation
 
 When citing this site, please carry the evidence grade with the claim. Quoting a
-researched area of interest without its grade inverts the meaning of the entry —
+researched area of interest without its grade inverts the meaning of the entry.
 the grade is the substance, the area of interest is only the context.
 
 ## Status

@@ -9,7 +9,7 @@
 
   The commented block at the foot lists the routes to add as real pages are
   built. Uncomment each one only once the page returns 200 and is linked from
-  site navigation — a sitemap entry for a page with no internal links is a
+  site navigation - a sitemap entry for a page with no internal links is a
   crawl-budget leak, not a ranking signal.
 
   lastmod must be updated on genuine content change only. Refreshing every

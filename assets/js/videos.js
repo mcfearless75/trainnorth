@@ -1,9 +1,9 @@
 /* ==========================================================================
-   Video wall — rotating creator coverage
+   Video wall - rotating creator coverage
 
    ⚠️  ACTION REQUIRED BEFORE LAUNCH
    Every entry below marked `verified: false` carries a PLACEHOLDER YouTube id.
-   Placeholder ids are NOT rendered — the wall silently skips them — so the
+   Placeholder ids are NOT rendered - the wall silently skips them - so the
    page never ships a broken embed. Replace `id` with the real 11-character
    YouTube video id and flip `verified: true` to bring an entry live.
 
@@ -21,7 +21,7 @@ const VIDEO_LIBRARY = [
   {
     id: "0xHkEg5-iwU",
     verified: true,
-    title: "Retatrutide — a six-week body composition record",
+    title: "Retatrutide: a six-week body composition record",
     channel: "Creator coverage",
     topic: "Weight loss",
     duration: "PT12M",
@@ -62,7 +62,7 @@ const VIDEO_LIBRARY = [
     channel: "Creator coverage",
     topic: "Sourcing",
     duration: "PT11M",
-    summary: "Purity, identity and salt form — what a COA proves and what it cannot."
+    summary: "Purity, identity and salt form, and what a COA proves and what it cannot."
   },
   {
     id: "REPLACE_ME_05",

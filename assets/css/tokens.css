@@ -1,14 +1,14 @@
 /* ==========================================================================
-   Design tokens — cool slate / laboratory blue
+   Design tokens - cool slate / laboratory blue
 
    Direction: a deep blue-grey field with a single steel-blue signal accent.
    Neutrals carry a slight blue cast (chroma ~0.012–0.022 around hue 255) so
-   greys read as cool and considered rather than muddy — a pure 0-chroma grey
+   greys read as cool and considered rather than muddy - a pure 0-chroma grey
    next to a blue accent looks dirty by comparison.
 
    Because the field is almost entirely desaturated, the only saturated things
    on the page are the ones carrying meaning: the evidence tiers and the
-   category rails. That is deliberate — colour is information here, not
+   category rails. That is deliberate - colour is information here, not
    decoration, and a calm field is what makes long-form scrolling comfortable.
    ========================================================================== */
 
@@ -26,7 +26,7 @@
   --bone-400: oklch(75% 0.011 250);
   --bone-600: oklch(60% 0.013 250);
 
-  /* --- Signal (steel blue — actions and emphasis, used sparingly) --------- */
+  /* --- Signal (steel blue - actions and emphasis, used sparingly) --------- */
   --signal: oklch(73% 0.117 242);
   --signal-bright: oklch(82% 0.098 238);
   --signal-deep: oklch(52% 0.108 247);
@@ -37,7 +37,7 @@
      dark so it belongs to the blue family rather than fighting it. */
   --on-signal: oklch(17% 0.030 250);
 
-  /* --- Data (charts, metrics — never decorative) -------------------------- */
+  /* --- Data (charts, metrics - never decorative) -------------------------- */
   --data: oklch(80% 0.082 205);
   --data-wash: oklch(80% 0.082 205 / 0.14);
 
@@ -61,7 +61,7 @@
   --hairline-strong: oklch(100% 0 0 / 0.19);
 
   /* --- Type ---------------------------------------------------------------
-     Newsreader is a low-contrast screen serif — it holds its weight at very
+     Newsreader is a low-contrast screen serif - it holds its weight at very
      large display sizes without the hairline strokes that make high-contrast
      serifs shimmer on a dark background.
 
@@ -75,7 +75,7 @@
 
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
-  /* Nudged up slightly from the previous scale — Plex Sans has a smaller
+  /* Nudged up slightly from the previous scale - Plex Sans has a smaller
      x-height than Manrope, so it needs the extra size to read as easily. */
   --text-base: clamp(1rem, 0.95rem + 0.24vw, 1.09rem);
   --text-lead: clamp(1.1rem, 1.01rem + 0.44vw, 1.34rem);
@@ -127,7 +127,7 @@
 }
 
 /* Light mode is deliberately not offered. This is a single-direction
-   aesthetic — a light variant would dilute it. */
+   aesthetic - a light variant would dilute it. */
 
 @media (prefers-reduced-motion: reduce) {
   :root {

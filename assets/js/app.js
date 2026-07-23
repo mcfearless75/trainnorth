@@ -5,7 +5,7 @@
      - animated metric counters
      - compound library: search, filter, detail drawer
      - reconstitution calculator
-   No dependencies. Classic script — peptides.js must load first.
+   No dependencies. Classic script - peptides.js must load first.
 
    Deliberately not an ES module: the site has to run correctly when opened
    directly from disk (file://), where module imports are blocked by CORS.
@@ -19,7 +19,7 @@ const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
 /* ==========================================================================
-   Chrome — masthead state, scroll progress, active chapter
+   Chrome - masthead state, scroll progress, active chapter
    ========================================================================== */
 
 function initChrome() {
@@ -67,7 +67,7 @@ function initChrome() {
 }
 
 /* ==========================================================================
-   Reveal staging — elements enter as the reader reaches them
+   Reveal staging - elements enter as the reader reaches them
    ========================================================================== */
 
 function initReveal() {
@@ -89,7 +89,7 @@ function initReveal() {
 }
 
 /* ==========================================================================
-   Metric counters — count up once, when the panel is first seen
+   Metric counters - count up once, when the panel is first seen
    ========================================================================== */
 
 function countTo(el, target, decimals) {
@@ -103,7 +103,7 @@ function countTo(el, target, decimals) {
 
   const step = (now) => {
     const t = Math.min(1, (now - start) / duration);
-    // easeOutExpo — fast arrival, soft settle
+    // easeOutExpo - fast arrival, soft settle
     const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
     el.textContent = (target * eased).toFixed(decimals);
     if (t < 1) requestAnimationFrame(step);
@@ -399,10 +399,10 @@ function recalculate() {
 
   const valid = [vial, bac, dose].every((n) => Number.isFinite(n) && n > 0);
   if (!valid) {
-    f.iu.textContent = "—";
-    f.conc.textContent = "—";
-    f.volume.textContent = "—";
-    f.doses.textContent = "—";
+    f.iu.textContent = "-";
+    f.conc.textContent = "-";
+    f.volume.textContent = "-";
+    f.doses.textContent = "-";
     f.fill.style.width = "0%";
     return;
   }
@@ -452,7 +452,7 @@ function initCalculator() {
   if (!f.select) return;
 
   f.select.innerHTML = PEPTIDES
-    .map((p) => `<option value="${p.n}">${p.n} — ${p.mg} mg</option>`)
+    .map((p) => `<option value="${p.n}">${p.n} - ${p.mg} mg</option>`)
     .join("");
 
   f.select.addEventListener("change", () => {
@@ -476,7 +476,7 @@ function initCalculator() {
 }
 
 /* ==========================================================================
-   Video wall — shuffled creator coverage, click-to-load facade
+   Video wall - shuffled creator coverage, click-to-load facade
 
    Rotation uses a Fisher-Yates shuffle so the order genuinely varies per
    visit rather than drifting toward the same few entries. Thumbnails come

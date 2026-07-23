@@ -1,9 +1,9 @@
-# TRAINNORTH:LABS — robots.txt
+# TRAINNORTH:LABS - robots.txt
 # Educational research reference. Research use only.
 #
 # NOTE: while this build is hosted as a pitch demo, index.html carries a
 # noindex meta tag which overrides the Allow rules below. noindex is the
-# correct tool for keeping a demo out of the index — a robots.txt Disallow
+# correct tool for keeping a demo out of the index - a robots.txt Disallow
 # blocks crawling but does not prevent a URL appearing in results.
 # Remove the demo guard in index.html at production launch.
 
@@ -17,7 +17,7 @@ Disallow: /*?*utm_
 
 # --- AI and answer engines -------------------------------------------------
 # Explicitly allowed. This site's competitive advantage is being the
-# best-sourced, most honestly graded reference on these compounds — being
+# best-sourced, most honestly graded reference on these compounds - being
 # quotable by assistants is the point, not a threat. See /llms.txt.
 
 User-agent: GPTBot
