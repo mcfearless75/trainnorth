@@ -141,10 +141,21 @@ $$("[data-copy]").forEach((btn) => {
   }
 
   $("#eqWhatsapp")?.addEventListener("click", () => {
+    // Product interest only in the props; the visitor's email never goes to analytics.
+    if (window.plausible) {
+      window.plausible("Enquiry: WhatsApp", { props: {
+        source: "contact",
+        material: ($("#eqMaterial")?.value || "unspecified").trim() || "unspecified",
+        country: $("#eqCountry")?.value || "unset"
+      }});
+    }
     window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(compose()), "_blank", "noopener,noreferrer");
   });
 
   $("#eqEmailBtn")?.addEventListener("click", () => {
+    if (window.plausible) {
+      window.plausible("Enquiry: Email", { props: { source: "contact" } });
+    }
     window.location.href = "mailto:health@trainnorthlabs.com" +
       "?subject=" + encodeURIComponent("Research enquiry") +
       "&body=" + encodeURIComponent(compose());

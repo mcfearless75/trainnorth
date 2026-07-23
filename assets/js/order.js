@@ -238,6 +238,24 @@ function init() {
       return;
     }
     $("#ordError").hidden = true;
+
+    /* Commission signal. Records that an enquiry left for the supplier, with
+       enough to reconcile against their referral statements: value, size and
+       destination. Deliberately NO personal fields - name, address and phone
+       never reach analytics. A click proves an enquiry opened, not that it
+       was sent or paid; the TN-REF5 code inside the message is what ties an
+       actual order back for commission. */
+    if (window.plausible) {
+      const t = totals();
+      window.plausible("Enquiry: WhatsApp", { props: {
+        source: "order",
+        items: basket.length,
+        boxes: basket.reduce((n, b) => n + b.qty, 0),
+        value_usd: Math.round(t.total),
+        country: countryCode() || "unset"
+      }});
+    }
+
     window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(compose()),
                 "_blank", "noopener,noreferrer");
   });

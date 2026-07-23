@@ -23,7 +23,7 @@ import json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://trainnorthlabs.com"
 WA = "85256440181"
-ASSET_V = "v=20260723f"
+ASSET_V = "v=20260723g"
 
 # --------------------------------------------------------------------------
 # Read the JS data files rather than duplicating them
@@ -123,7 +123,8 @@ def head(title, desc, canonical, extra=""):
 <link rel="stylesheet" href="/assets/css/sections.css?{ASSET_V}">
 <link rel="stylesheet" href="/assets/css/catalogue.css?{ASSET_V}">
 <link rel="stylesheet" href="/assets/css/pages.css?{ASSET_V}">
-<script defer data-domain="trainnorthlabs.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+<script defer data-domain="trainnorthlabs.com" src="https://plausible.io/js/script.outbound-links.tagged-events.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
 {extra}
 </head>
 <body class="subpage">
