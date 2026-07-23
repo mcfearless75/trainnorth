@@ -1277,6 +1277,42 @@
 
 .btn--whatsapp svg { flex: none; }
 
+/* The number shown in full rather than hidden inside the link. A visible
+   number is a trust signal on a page asking someone to contact a third
+   party, and it gives anyone on desktop something they can copy into their
+   own phone instead of relying on the wa.me handoff. */
+.wa-number {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  margin-bottom: 0;
+}
+
+.wa-number__label {
+  font-family: var(--font-eyebrow);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.wa-number a {
+  font-family: var(--font-mono);
+  font-size: 1.0625rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--signal-line);
+  padding-bottom: 1px;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+
+.wa-number a:hover,
+.wa-number a:focus-visible { color: var(--signal); border-bottom-color: var(--signal); }
+
 .code-chip {
   display: inline-flex;
   align-items: center;
