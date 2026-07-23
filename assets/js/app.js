@@ -26,7 +26,9 @@ function initChrome() {
   const masthead = $(".masthead");
   const fill = $(".progress-rail__fill");
   const chapters = $$(".chapter[id]");
-  const navLinks = $$(".nav a[href^='#']");
+  // The masthead nav and the section rail both mark the current chapter, so
+  // they are driven from one observer rather than two that could disagree.
+  const navLinks = $$(".nav a[href^='#'], .section-rail a[href^='#']");
 
   let ticking = false;
 

@@ -107,6 +107,115 @@
 }
 
 /* ==========================================================================
+   SECTION RAIL
+   A fixed vertical index of the chapters. Collapsed to dots by default so it
+   costs almost no visual weight, expanding to labels on hover or keyboard
+   focus. On small screens it is the only navigation available, so the dots
+   stay permanently visible and are sized for a thumb.
+   ========================================================================== */
+
+.section-rail {
+  position: fixed;
+  right: clamp(0.5rem, 0.9vw, 1.1rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 45;
+}
+
+.section-rail ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  border-radius: 999px;
+  background: oklch(16% 0.017 255 / 0.5);
+  border: 1px solid transparent;
+  backdrop-filter: blur(10px);
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+
+.section-rail:hover ul,
+.section-rail:focus-within ul {
+  background: oklch(19% 0.019 255 / 0.9);
+  border-color: var(--hairline);
+}
+
+.section-rail a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  padding: 0.3rem 0.35rem;
+  text-decoration: none;
+  border-radius: 999px;
+}
+
+.section-rail__dot {
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--ink-600);
+  transition: background var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+
+.section-rail a:hover .section-rail__dot,
+.section-rail a:focus-visible .section-rail__dot { background: var(--bone-400); }
+
+/* Active chapter. The dot is elongated rather than merely recoloured so the
+   current position is readable without relying on colour alone. */
+.section-rail a[aria-current="true"] .section-rail__dot {
+  background: var(--signal);
+  width: 1.1rem;
+  border-radius: 999px;
+}
+
+/* Labels are laid out but clipped, so the rail never reflows when they appear
+   and the accessible name is always present for screen readers. */
+.section-rail__label {
+  font-family: var(--font-eyebrow);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-muted);
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  order: -1;
+  transition: max-width var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out);
+}
+
+.section-rail:hover .section-rail__label,
+.section-rail:focus-within .section-rail__label {
+  max-width: 8rem;
+  opacity: 1;
+}
+
+.section-rail a[aria-current="true"] .section-rail__label { color: var(--signal); }
+
+@media (max-width: 900px) {
+  /* Sole navigation at this width: larger targets, and no label expansion
+     since there is no hover on touch. */
+  .section-rail a { padding: 0.42rem 0.35rem; }
+  .section-rail__dot { width: 0.55rem; height: 0.55rem; }
+  .section-rail:hover .section-rail__label,
+  .section-rail:focus-within .section-rail__label { max-width: 0; opacity: 0; }
+}
+
+/* Below this the rail would sit over body copy on the narrowest phones. */
+@media (max-width: 22rem) {
+  .section-rail { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-rail__label { transition: none; }
+}
+
+/* ==========================================================================
    HERO
    ========================================================================== */
 
@@ -281,6 +390,14 @@
 @media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: var(--space-6); } }
 
 .spec-list { list-style: none; margin: 0; padding: 0; }
+
+/* When the list is also a card, the list reset above would strip the card's
+   padding and leave every value flush against the border. Restore it at higher
+   specificity, and drop the outer rules so the first and last rows do not sit
+   against their own padding. */
+.card.spec-list { padding: var(--space-5); }
+.card.spec-list li:first-child { padding-top: 0; }
+.card.spec-list li:last-child { padding-bottom: 0; border-bottom: 0; }
 
 .spec-list li {
   display: flex;
