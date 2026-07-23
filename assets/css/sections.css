@@ -795,10 +795,53 @@
    VIDEO WALL
    ========================================================================== */
 
+.video-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+
 .video-wall {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: var(--space-4);
+}
+
+/* The week's pick takes two columns and a wider aspect, so the section has a
+   focal point instead of an undifferentiated grid. Falls back to a normal
+   cell below the breakpoint where two columns stop fitting. */
+.vid--featured { grid-column: span 2; }
+.vid--featured .vid__trigger { aspect-ratio: 21 / 9; }
+.vid--featured .vid__title { font-size: 1.45rem; }
+.vid--featured .vid__thumb { transform: scale(1.02); }
+.vid--featured:hover .vid__thumb { transform: scale(1.06); }
+
+@media (max-width: 46rem) {
+  .vid--featured { grid-column: span 1; }
+  .vid--featured .vid__trigger { aspect-ratio: 16 / 9; }
+  .vid--featured .vid__thumb { transform: scale(1.34); }
+  .vid--featured:hover .vid__thumb { transform: scale(1.42); }
+}
+
+.vid__flag {
+  position: absolute;
+  right: var(--space-3);
+  top: var(--space-3);
+  z-index: 2;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: var(--signal);
+  color: var(--on-signal);
+  font-family: var(--font-eyebrow);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .vid {

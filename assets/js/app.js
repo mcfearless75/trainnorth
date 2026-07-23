@@ -484,29 +484,59 @@ function initCalculator() {
    click, so no third-party script or cookie loads until the visitor asks.
    ========================================================================== */
 
-function shuffle(list) {
-  const out = list.slice();
-  for (let i = out.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [out[i], out[j]] = [out[j], out[i]];
-  }
-  return out;
+/* Weekly rotation.
+
+   The selection is seeded from the ISO week number, not from Math.random().
+   That means it is identical for every visitor for seven days and turns over
+   on Monday morning. Rotating per page load would look busy and give a
+   returning reader no reason to come back; rotating weekly gives the section
+   a publishing rhythm, and keeps the featured video stable long enough to be
+   worth marking up in schema.
+
+   Deterministic also means it survives a hard refresh, which random does not.
+*/
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
+function weekIndex(now) {
+  // 1970-01-05 was a Monday, so anchoring there makes each bucket boundary
+  // fall on a Monday 00:00 UTC rather than mid-week.
+  const MONDAY_EPOCH = Date.UTC(1970, 0, 5);
+  return Math.floor((now.getTime() - MONDAY_EPOCH) / WEEK_MS);
 }
 
-function videoCard(video) {
+function weekLabel(now) {
+  // Week-of-year, for the on-page label only.
+  const start = Date.UTC(now.getUTCFullYear(), 0, 1);
+  const day = Math.floor((now.getTime() - start) / 86400000);
+  return Math.floor(day / 7) + 1;
+}
+
+/* Rotate the list by the week index and take the first n. Every entry gets a
+   turn in the featured slot before any entry repeats, which a random pick
+   cannot promise. */
+function weeklySelection(list, n, seed) {
+  if (!list.length) return [];
+  const offset = ((seed % list.length) + list.length) % list.length;
+  const rotated = list.slice(offset).concat(list.slice(0, offset));
+  return rotated.slice(0, n);
+}
+
+function videoCard(video, isFeatured) {
   return `
-    <article class="vid" data-video="${video.id}">
+    <article class="vid${isFeatured ? " vid--featured" : ""}" data-video="${video.id}">
       <button class="vid__trigger" type="button" data-play="${video.id}"
               aria-label="Play: ${video.title}">
         <img class="vid__thumb"
-             src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg"
-             alt="" loading="lazy" width="480" height="360">
+             src="https://i.ytimg.com/vi/${video.id}/${isFeatured ? "maxresdefault" : "hqdefault"}.jpg"
+             alt="" loading="lazy" width="480" height="360"
+             onerror="this.src='https://i.ytimg.com/vi/${video.id}/hqdefault.jpg'">
         <span class="vid__play" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z"></path>
           </svg>
         </span>
         <span class="vid__topic">${video.topic}</span>
+        ${isFeatured ? '<span class="vid__flag">This week</span>' : ""}
       </button>
       <div class="vid__body">
         <h3 class="vid__title">${video.title}</h3>
@@ -516,18 +546,43 @@ function videoCard(video) {
     </article>`;
 }
 
-function renderVideos() {
+function renderVideos(showAll) {
   const wall = document.getElementById("videoWall");
   if (!wall || typeof liveVideos !== "function") return;
 
   const available = liveVideos();
+  const label = document.getElementById("videoWeek");
+  const toggle = document.getElementById("videoToggle");
 
   if (!available.length) {
-    wall.innerHTML = `<p class="library__empty">Creator coverage is being reviewed. New episodes are added as they are verified.</p>`;
+    wall.innerHTML = `<p class="library__empty">Creator coverage is being reviewed. New episodes are added here as they are verified.</p>`;
+    if (label) label.textContent = "";
+    if (toggle) toggle.hidden = true;
     return;
   }
 
-  wall.innerHTML = shuffle(available).slice(0, 6).map(videoCard).join("");
+  const now = new Date();
+  const selection = showAll
+    ? available
+    : weeklySelection(available, 6, weekIndex(now));
+
+  wall.innerHTML = selection
+    .map((v, i) => videoCard(v, !showAll && i === 0))
+    .join("");
+
+  if (label) {
+    label.textContent = showAll
+      ? `All ${available.length} verified`
+      : `Week ${weekLabel(now)} selection`;
+  }
+
+  // The toggle only earns its place once there is more coverage than a single
+  // week shows; below that it would just re-render the same cards.
+  if (toggle) {
+    toggle.hidden = available.length <= 6;
+    toggle.textContent = showAll ? "Show this week only" : "Show all coverage";
+    toggle.setAttribute("aria-pressed", String(Boolean(showAll)));
+  }
 }
 
 function initVideos() {
@@ -551,7 +606,11 @@ function initVideos() {
     trigger.replaceWith(frame);
   });
 
-  document.getElementById("videoShuffle")?.addEventListener("click", renderVideos);
+  let showingAll = false;
+  document.getElementById("videoToggle")?.addEventListener("click", () => {
+    showingAll = !showingAll;
+    renderVideos(showingAll);
+  });
 }
 
 /* ==========================================================================

@@ -481,14 +481,16 @@
         <h2 class="display">The episodes, and the people arguing with them.</h2>
         <p class="lead">
           Episodes from this record alongside coverage from other creators working
-          the same material, including the ones who disagree. The selection is
-          reshuffled on every visit so the wall does not settle into an echo chamber.
+          the same material, including the ones who disagree. The selection turns
+          over every Monday, so the wall never settles into the same handful of
+          voices.
         </p>
       </div>
 
-      <div style="display:flex; justify-content:flex-end; margin-bottom: var(--space-4)">
-        <button class="btn btn--sm btn--ghost" type="button" id="videoShuffle">
-          Reshuffle selection
+      <div class="video-bar">
+        <span class="eyebrow" id="videoWeek"></span>
+        <button class="btn btn--sm btn--ghost" type="button" id="videoToggle" aria-pressed="false" hidden>
+          Show all coverage
         </button>
       </div>
 
