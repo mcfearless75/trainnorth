@@ -124,7 +124,7 @@ def head(title, desc, canonical, extra=""):
 <link rel="stylesheet" href="/assets/css/catalogue.css?{ASSET_V}">
 <link rel="stylesheet" href="/assets/css/pages.css?{ASSET_V}">
 <script defer data-domain="trainnorthlabs.com" src="https://plausible.io/js/script.outbound-links.tagged-events.js"></script>
-<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+<script>window.plausible=window.plausible||function(){{(window.plausible.q=window.plausible.q||[]).push(arguments)}}</script>
 {extra}
 </head>
 <body class="subpage">
