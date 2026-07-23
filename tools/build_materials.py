@@ -158,6 +158,21 @@ def build() -> str:
   </div>
 </article>
 
+<!-- Specification modal. Must live on any page that renders the catalogue:
+     openSpec() returns early when #specModal is absent, so a missing modal
+     turns every Select button into a dead click with no error. -->
+<div class="spec" id="specModal" data-open="false" hidden role="dialog" aria-modal="true" aria-label="Select specification">
+  <button class="spec__scrim" type="button" aria-label="Close"></button>
+  <div class="spec__panel">
+    <button class="drawer__close" type="button" id="specClose" aria-label="Close">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+        <path d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+    <div id="specBody"></div>
+  </div>
+</div>
+
 <div class="cat-bar" id="catBar" hidden>
   <div class="cat-bar__meta">
     <span class="cat-bar__count" id="barCount"></span>
