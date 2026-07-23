@@ -252,6 +252,13 @@
 
 /* --- Specification modal ------------------------------------------------- */
 
+/* `display: grid` here overrides the browser's [hidden] { display: none },
+   because both rules carry the same specificity and this one loads later.
+   Without the guard below the closed modal stays laid out at full viewport
+   size with pointer-events enabled: invisible at opacity 0, but swallowing
+   every click and scroll on the page. */
+.spec[hidden] { display: none; }
+
 .spec {
   position: fixed;
   inset: 0;

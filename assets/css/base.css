@@ -4,6 +4,13 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* The `hidden` attribute must always win. Any component rule that sets its own
+   display value silently defeats the browser default at equal specificity, and
+   a fixed-position overlay that stays laid out while hidden will intercept
+   every click on the page. Enforced once here rather than remembered per
+   component. */
+[hidden] { display: none !important; }
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
