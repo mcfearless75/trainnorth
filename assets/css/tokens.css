@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Design tokens — documentary / laboratory editorial
+   Direction: dark cinematic field, bone-paper text, single amber signal
+   accent, cool teal reserved exclusively for data and evidence states.
+   ========================================================================== */
+
+:root {
+  /* --- Field ------------------------------------------------------------ */
+  --ink-900: oklch(12% 0.012 265);
+  --ink-850: oklch(15% 0.014 265);
+  --ink-800: oklch(18% 0.016 265);
+  --ink-700: oklch(23% 0.018 265);
+  --ink-600: oklch(30% 0.018 265);
+
+  /* --- Paper ------------------------------------------------------------ */
+  --bone-100: oklch(95% 0.012 85);
+  --bone-200: oklch(88% 0.014 85);
+  --bone-400: oklch(72% 0.012 85);
+  --bone-600: oklch(56% 0.010 85);
+
+  /* --- Signal (accent — used sparingly, for action and emphasis) --------- */
+  --signal: oklch(77% 0.163 68);
+  --signal-bright: oklch(84% 0.150 72);
+  --signal-deep: oklch(58% 0.140 62);
+  --signal-wash: oklch(77% 0.163 68 / 0.12);
+  --signal-line: oklch(77% 0.163 68 / 0.32);
+
+  /* --- Data (charts, evidence bars, metrics only — never decorative) ----- */
+  --data: oklch(74% 0.108 196);
+  --data-wash: oklch(74% 0.108 196 / 0.14);
+
+  /* --- Evidence strength scale ------------------------------------------ */
+  --ev-strong: oklch(74% 0.135 155);
+  --ev-moderate: oklch(78% 0.140 90);
+  --ev-limited: oklch(72% 0.150 45);
+  --ev-preclinical: oklch(63% 0.090 300);
+
+  /* --- Semantic --------------------------------------------------------- */
+  --bg: var(--ink-900);
+  --bg-raised: var(--ink-850);
+  --bg-card: oklch(17% 0.015 265 / 0.72);
+  --text: var(--bone-100);
+  --text-muted: var(--bone-400);
+  --text-dim: var(--bone-600);
+  --hairline: oklch(100% 0 0 / 0.09);
+  --hairline-strong: oklch(100% 0 0 / 0.17);
+
+  /* --- Type ------------------------------------------------------------- */
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-eyebrow: "Archivo", "Helvetica Neue", sans-serif;
+  --font-body: "Manrope", "Helvetica Neue", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: clamp(0.975rem, 0.93rem + 0.22vw, 1.0625rem);
+  --text-lead: clamp(1.075rem, 0.99rem + 0.42vw, 1.3125rem);
+  --text-h3: clamp(1.35rem, 1.16rem + 0.85vw, 1.85rem);
+  --text-h2: clamp(2.1rem, 1.42rem + 3.05vw, 4.15rem);
+  --text-h1: clamp(3rem, 1.35rem + 7.4vw, 8.25rem);
+  --text-metric: clamp(2.25rem, 1.6rem + 2.9vw, 4rem);
+
+  --leading-tight: 0.94;
+  --leading-snug: 1.16;
+  --leading-body: 1.62;
+
+  --tracking-eyebrow: 0.22em;
+  --tracking-tight: -0.022em;
+
+  /* --- Rhythm ----------------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+  --space-chapter: clamp(4.5rem, 3rem + 7vw, 11rem);
+
+  --gutter: clamp(1.25rem, 0.6rem + 3.1vw, 4rem);
+  --measure: 62ch;
+  --max-w: 1320px;
+  --max-w-narrow: 880px;
+
+  /* --- Surface treatment ------------------------------------------------ */
+  --radius-sm: 4px;
+  --radius: 10px;
+  --radius-lg: 18px;
+  --shadow-lift: 0 1px 2px oklch(0% 0 0 / 0.4), 0 12px 32px -12px oklch(0% 0 0 / 0.7);
+  --shadow-deep: 0 2px 4px oklch(0% 0 0 / 0.5), 0 40px 80px -28px oklch(0% 0 0 / 0.85);
+
+  /* --- Motion ----------------------------------------------------------- */
+  --dur-fast: 160ms;
+  --dur: 320ms;
+  --dur-slow: 720ms;
+  --dur-cinematic: 1150ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Light mode is deliberately not offered. This is a single-direction
+   documentary aesthetic — a light variant would dilute it. */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur: 1ms;
+    --dur-slow: 1ms;
+    --dur-cinematic: 1ms;
+  }
+}

@@ -1,0 +1,56 @@
+# MarcinLabs — robots.txt
+# Educational research reference. Research use only.
+
+User-agent: *
+Allow: /
+
+# No crawl value, and query strings create duplicate-content variants
+Disallow: /*?*fbclid=
+Disallow: /*?*gclid=
+Disallow: /*?*utm_
+
+# --- AI and answer engines -------------------------------------------------
+# Explicitly allowed. This site's competitive advantage is being the
+# best-sourced, most honestly graded reference on these compounds — being
+# quotable by assistants is the point, not a threat. See /llms.txt.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- Aggressive SEO crawlers ----------------------------------------------
+# No benefit to the site, meaningful server load.
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
+
+Sitemap: https://marcinlab.com/sitemap.xml

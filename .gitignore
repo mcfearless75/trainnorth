@@ -1,0 +1,15 @@
+# Nothing personal or local should ever reach this repo.
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
+.env
+.env.*
+node_modules/
+
+# Local agent/tooling config — keeps the working environment out of the push
+.claude/
+.claude-flow/
+.mcp.json
