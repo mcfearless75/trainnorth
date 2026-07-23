@@ -175,10 +175,10 @@
      rather than leaving a dead call on every page load. -->
 <script defer data-domain="trainnorthlabs.com" src="https://plausible.io/js/script.outbound-links.js"></script>
 
-<link rel="stylesheet" href="assets/css/tokens.css?v=20260723d">
-<link rel="stylesheet" href="assets/css/base.css?v=20260723d">
-<link rel="stylesheet" href="assets/css/sections.css?v=20260723d">
-<link rel="stylesheet" href="assets/css/catalogue.css?v=20260723d">
+<link rel="stylesheet" href="assets/css/tokens.css?v=20260723e">
+<link rel="stylesheet" href="assets/css/base.css?v=20260723e">
+<link rel="stylesheet" href="assets/css/sections.css?v=20260723e">
+<link rel="stylesheet" href="assets/css/catalogue.css?v=20260723e">
 </head>
 <body>
 
@@ -213,7 +213,7 @@
       <a href="/ai-training/">AI Training</a>
       <a href="/peptide-library/">Library</a>
       <a href="#calculator">Calculator</a>
-      <a href="#supply">Materials</a>
+      <a href="/research-materials/">Materials</a>
       <a href="/contact/">Contact</a>
     </nav>
     <a class="btn btn--sm btn--ghost masthead__contact" href="#contact">Contact</a>
@@ -923,48 +923,24 @@
         <h2 class="display">This site is not a pharmacy.</h2>
       </div>
 
-      <div class="cat" data-reveal>
-        <div class="cat__terms">
-          <div>
-            <span class="vital__label">Price basis</span>
-            <p>One price is one box of ten vials, not a single vial.</p>
-          </div>
-          <div>
-            <span class="vital__label">Supplied by</span>
-            <p>An independent laboratory supplier. Not held or dispatched by TRAINNORTH:LABS.</p>
-          </div>
-          <div>
-            <span class="vital__label">Payment</span>
-            <p>Arranged directly with the supplier. Nothing is taken on this site.</p>
-          </div>
+      <div class="cat__terms" data-reveal>
+        <div>
+          <span class="vital__label">Catalogue</span>
+          <p>58 research materials across 122 specifications, from $15 per box.</p>
         </div>
-
-        <div class="library__controls">
-          <div class="filters" id="catFilters" role="group" aria-label="Filter research materials"></div>
-          <span class="library__count" id="catCount" role="status" aria-live="polite"></span>
+        <div>
+          <span class="vital__label">Price basis</span>
+          <p>One price is one box of ten vials, not a single vial.</p>
         </div>
-
-        <div class="cat__layout">
-          <div class="cat__grid" id="catGrid"></div>
-
-          <aside class="basket" id="basket" data-empty="true" aria-label="Research enquiry">
-            <div class="basket__head">
-              <span class="eyebrow">Your enquiry</span>
-              <span class="basket__badge mono" id="basketCount">0</span>
-            </div>
-            <ul class="basket__list" id="basketList"></ul>
-            <div class="basket__totals" id="basketTotals"></div>
-            <div class="basket__actions">
-              <button class="btn btn--primary btn--whatsapp btn--sm" type="button" id="basketSend">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-                </svg>
-                Send enquiry
-              </button>
-              <button class="btn btn--sm btn--ghost" type="button" id="basketClear">Clear</button>
-            </div>
-          </aside>
+        <div>
+          <span class="vital__label">Evidence</span>
+          <p>29 of 58 carry a grade from the compound library. The rest say so.</p>
         </div>
+      </div>
+
+      <div class="hero__actions" data-reveal style="margin-bottom: var(--space-6)">
+        <a class="btn btn--primary" href="/research-materials/">Open the price list</a>
+        <a class="btn btn--ghost" href="/peptide-library/">Check the evidence first</a>
       </div>
 
       <div class="supply" data-reveal style="margin-top: var(--space-6)">
@@ -1090,7 +1066,7 @@
         <h2 style="margin-top: var(--space-5)">Site</h2>
         <ul>
           <li><a href="#faq">Questions</a></li>
-          <li><a href="#supply">Research materials</a></li>
+          <li><a href="/research-materials/">Research materials</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -1133,10 +1109,10 @@
   </div>
 </div>
 
-<script src="assets/js/peptides.js?v=20260723d"></script>
-<script src="assets/js/videos.js?v=20260723d"></script>
-<script src="assets/js/products.js?v=20260723d"></script>
-<script src="assets/js/app.js?v=20260723d" defer></script>
-<script src="assets/js/catalogue.js?v=20260723d" defer></script>
+<script src="assets/js/peptides.js?v=20260723e"></script>
+<script src="assets/js/videos.js?v=20260723e"></script>
+<script src="assets/js/products.js?v=20260723e"></script>
+<script src="assets/js/app.js?v=20260723e" defer></script>
+<script src="assets/js/catalogue.js?v=20260723e" defer></script>
 </body>
 </html>

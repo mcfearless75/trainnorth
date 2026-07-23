@@ -1,0 +1,177 @@
+#!/usr/bin/env python3
+"""
+Generates /research-materials/ as a standalone route.
+
+The catalogue previously lived only as a section of the home page, which meant
+58 priced products sat behind a fragment URL that Google will not treat as its
+own document. As a real page it gets its own title, description, canonical and
+schema, and can be linked to directly from every compound page.
+
+The interactive catalogue, basket and enquiry compiler are the same modules the
+home page uses, so there is one implementation rather than two that drift.
+
+Run:  python tools/build_materials.py
+"""
+
+import os
+import sys
+from typing import Final
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_pages import head, FOOT, write, SITE, WA, PRODUCTS, ASSET_V  # noqa: E402
+
+CATEGORY_LABELS: Final[dict[str, str]] = {
+    "glp1": "GLP-1 &amp; metabolic",
+    "growth": "Growth axis",
+    "recovery": "Tissue recovery",
+    "cognitive": "Nootropic &amp; cognitive",
+    "endocrine": "Hormones &amp; endocrine",
+    "cellular": "Metabolic &amp; cellular",
+    "cosmetic": "Cosmetic &amp; dermal",
+    "accessories": "Accessories",
+}
+
+
+def _stats() -> tuple[int, int, int, float]:
+    """Product count, variant count, graded count, and the lowest price."""
+    variants = sum(len(p["variants"]) for p in PRODUCTS)
+    graded = sum(1 for p in PRODUCTS if p.get("lib"))
+    cheapest = min(v["price"] for p in PRODUCTS for v in p["variants"])
+    return len(PRODUCTS), variants, graded, cheapest
+
+
+def build() -> str:
+    products, variants, graded, cheapest = _stats()
+    url = f"{SITE}/research-materials/"
+
+    breadcrumb = (
+        '<script type="application/ld+json">{"@context":"https://schema.org",'
+        '"@type":"BreadcrumbList","itemListElement":['
+        f'{{"@type":"ListItem","position":1,"name":"Home","item":"{SITE}/"}},'
+        f'{{"@type":"ListItem","position":2,"name":"Research materials","item":"{url}"}}'
+        "]}</script>"
+    )
+
+    # No Product/Offer schema, deliberately. These are supplied by an
+    # independent third party and several are prescription-only medicines in
+    # the UK; marking them up as offers from this site would both misstate the
+    # seller and advertise POMs to the public.
+    body = f"""
+<article class="pg">
+  <div class="shell">
+    <nav class="pg__crumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span aria-hidden="true">/</span>
+      <span aria-current="page">Research materials</span>
+    </nav>
+
+    <header class="pg__head">
+      <span class="eyebrow">Research use only &middot; laboratory</span>
+      <h1 class="display">Research materials</h1>
+      <p class="lead">This is not a pharmacy and not a shop. Reference pricing comes from an
+        independent laboratory supplier. TRAINNORTH:LABS assembles the enquiry; the supplier
+        handles everything after that.</p>
+      <p class="pg__ruo">18+ only. Research use only. Not for human consumption.
+        Not approved as a medicine. Not medical advice.</p>
+    </header>
+
+    <div class="cat__terms">
+      <div>
+        <span class="vital__label">Price basis</span>
+        <p>One price is one box of ten vials, not a single vial.</p>
+      </div>
+      <div>
+        <span class="vital__label">Supplied by</span>
+        <p>An independent laboratory supplier. Nothing is held or dispatched by TRAINNORTH:LABS.</p>
+      </div>
+      <div>
+        <span class="vital__label">Payment</span>
+        <p>Arranged directly with the supplier. No payment is taken on this site.</p>
+      </div>
+      <div>
+        <span class="vital__label">Referral code</span>
+        <p>TN-REF5 gives 5% off, priority processing and priority shipping. Disclosed arrangement.</p>
+      </div>
+    </div>
+
+    <section class="pg__block">
+      <h2>Why {products - graded} of these carry no evidence grade</h2>
+      <p class="muted">{graded} of the {products} products here map to an entry in the
+        <a href="/peptide-library/">compound library</a> and carry its evidence grade. The rest are
+        listed by the supplier but have not yet been reviewed against the literature, so they show
+        &ldquo;Not yet reviewed&rdquo; rather than borrowing a grade they have not earned. A product
+        being available is not evidence of anything.</p>
+    </section>
+
+    <div class="library__controls">
+      <div class="filters" id="catFilters" role="group" aria-label="Filter research materials"></div>
+      <span class="library__count" id="catCount" role="status" aria-live="polite"></span>
+    </div>
+
+    <div class="cat__layout">
+      <div class="cat__grid" id="catGrid"></div>
+
+      <aside class="basket" id="basket" data-empty="true" aria-label="Research enquiry">
+        <div class="basket__head">
+          <span class="eyebrow">Your enquiry</span>
+          <span class="basket__badge mono" id="basketCount">0</span>
+        </div>
+        <ul class="basket__list" id="basketList"></ul>
+        <div class="basket__totals" id="basketTotals"></div>
+        <div class="basket__actions">
+          <button class="btn btn--primary btn--whatsapp btn--sm" type="button" id="basketSend">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+            Send enquiry
+          </button>
+          <button class="btn btn--sm btn--ghost" type="button" id="basketClear">Clear</button>
+        </div>
+      </aside>
+    </div>
+
+    <section class="pg__block" style="margin-top: var(--space-7)">
+      <h2>How an enquiry works</h2>
+      <ol class="steps">
+        <li><div><h3>Select what you are interested in</h3><p>Choose a specification and quantity. Quantity is counted in boxes, not vials.</p></div></li>
+        <li><div><h3>The enquiry is assembled here</h3><p>Your selection, the referral code and the research-use framing are written into a single message.</p></div></li>
+        <li><div><h3>You send it yourself</h3><p>The button opens WhatsApp addressed to the supplier. Nothing is submitted to this site and nothing is stored.</p></div></li>
+        <li><div><h3>The supplier quotes and fulfils</h3><p>Pricing confirmation, shipping cost, certificate of analysis, payment and dispatch are all handled by them.</p></div></li>
+      </ol>
+      <p class="wa-number">
+        <span class="wa-number__label">Supplier WhatsApp</span>
+        <a href="https://wa.me/{WA}" target="_blank" rel="noopener noreferrer">+852 5644 0181</a>
+      </p>
+    </section>
+
+    <p class="pg__disclaimer">
+      <strong>Disclaimer &mdash; Research Use Only.</strong> Materials listed on this page are
+      supplied for laboratory research only. They are not intended for human consumption, and the
+      majority are not approved as medicines in the United Kingdom. Several are prescription-only
+      medicines. Reference price equals one box of ten vials unless stated otherwise. Prices and
+      availability are set by the independent supplier and may change without notice.
+      TRAINNORTH:LABS does not sell, hold stock, take payment or dispatch anything, and receives a
+      referral benefit on orders placed using the code. Nothing here is medical advice.
+      Consult a qualified physician before making any health decision. 18+.
+    </p>
+
+    <a class="btn btn--ghost" href="/peptide-library/">Check the evidence first &rarr;</a>
+  </div>
+</article>
+
+<script src="/assets/js/catalogue.js?{ASSET_V}" defer></script>
+"""
+
+    title = "Research Materials (RUO) — Reference Price List | TRAINNORTH:LABS"
+    desc = (
+        f"Reference pricing for {products} laboratory research materials across {variants} "
+        f"specifications, from ${cheapest:g} per box of ten vials. Not a pharmacy. "
+        "Research use only, not for human consumption. 18+."
+    )
+    return write("research-materials/index.html",
+                 head(title, desc, url, breadcrumb) + body + FOOT)
+
+
+if __name__ == "__main__":
+    print("written:", build())
+    p, v, g, c = _stats()
+    print(f"products {p} | variants {v} | graded {g} | from ${c:g}")
