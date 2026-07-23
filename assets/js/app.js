@@ -147,7 +147,12 @@ function initReveal() {
       entry.target.classList.add("is-revealed");
       obs.unobserve(entry.target);
     });
-  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.1 });
+    // threshold MUST stay 0. A percentage threshold is unsatisfiable for any
+    // element taller than (viewport / threshold): the catalogue container is
+    // over 10,000px, so at 0.1 it needed 1,031px on screen and simply never
+    // revealed on a phone. An element should appear as soon as any part of it
+    // enters view, which is what 0 means.
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0 });
 
   targets.forEach((el) => observer.observe(el));
 
