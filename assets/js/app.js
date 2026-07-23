@@ -69,6 +69,62 @@ function initChrome() {
 }
 
 /* ==========================================================================
+   Mobile menu
+
+   The panel is toggled with the `hidden` attribute as well as a data flag:
+   hidden removes it from the accessibility tree entirely when closed, which
+   opacity alone does not do, so a screen reader never reaches ten navigation
+   links that are invisible on screen.
+   ========================================================================== */
+
+function initMobileMenu() {
+  const burger = $("#burger");
+  const menu = $("#mobileMenu");
+  if (!burger || !menu) return;
+
+  let open = false;
+
+  function setOpen(next) {
+    open = next;
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+
+    if (open) {
+      menu.hidden = false;
+      // Next frame, so the opacity transition has a starting value to move
+      // from rather than being skipped by the same-frame style change.
+      requestAnimationFrame(() => { menu.dataset.open = "true"; });
+      document.body.style.overflow = "hidden";
+      menu.querySelector("a")?.focus();
+    } else {
+      menu.dataset.open = "false";
+      document.body.style.overflow = "";
+      const done = () => { if (!open) menu.hidden = true; };
+      if (REDUCED) done();
+      else setTimeout(done, 320);
+      burger.focus();
+    }
+  }
+
+  burger.addEventListener("click", () => setOpen(!open));
+
+  // Any link closes it, since every destination is on this page
+  menu.addEventListener("click", (e) => {
+    if (e.target.closest("a")) setOpen(false);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && open) setOpen(false);
+  });
+
+  // Returning to desktop width must not leave the page scroll-locked behind
+  // a panel that is no longer displayed.
+  window.matchMedia("(min-width: 901px)").addEventListener("change", (e) => {
+    if (e.matches && open) setOpen(false);
+  });
+}
+
+/* ==========================================================================
    Reveal staging - elements enter as the reader reaches them
    ========================================================================== */
 
@@ -621,6 +677,7 @@ function initVideos() {
 
 function boot() {
   initChrome();
+  initMobileMenu();
   initReveal();
   initCounters();
   initLibrary();

@@ -203,14 +203,42 @@
       <a href="#research">Research</a>
       <a href="#supply">Enquiry</a>
     </nav>
-    <a class="btn btn--sm btn--ghost" href="#contact">Contact</a>
+    <a class="btn btn--sm btn--ghost masthead__contact" href="#contact">Contact</a>
+
+    <button class="burger" type="button" id="burger"
+            aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span class="burger__box" aria-hidden="true">
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+      </span>
+    </button>
   </div>
   <div class="progress-rail" aria-hidden="true"><div class="progress-rail__fill"></div></div>
 </header>
 
-<!-- Section rail. Doubles as the mobile navigation, since the masthead nav is
-     hidden below 900px and there was otherwise no way to skip between chapters
-     on a phone without scrolling the whole page. -->
+<!-- Mobile menu. Below 900px the masthead nav and the section rail are both
+     hidden, so this is the only navigation. -->
+<div class="mobile-menu" id="mobileMenu" data-open="false" hidden>
+  <nav class="mobile-menu__panel" aria-label="Sections">
+    <ol class="mobile-menu__list">
+      <li><a href="#protagonist"><span class="mobile-menu__no">01</span>Story</a></li>
+      <li><a href="#method"><span class="mobile-menu__no">02</span>Method</a></li>
+      <li><a href="#timeline"><span class="mobile-menu__no">03</span>Timeline</a></li>
+      <li><a href="#videos"><span class="mobile-menu__no">04</span>Videos</a></li>
+      <li><a href="#library"><span class="mobile-menu__no">05</span>Library</a></li>
+      <li><a href="#calculator"><span class="mobile-menu__no">06</span>Calculator</a></li>
+      <li><a href="#research"><span class="mobile-menu__no">07</span>Research</a></li>
+      <li><a href="#faq"><span class="mobile-menu__no">08</span>Questions</a></li>
+      <li><a href="#supply"><span class="mobile-menu__no">09</span>Materials</a></li>
+      <li><a href="#contact"><span class="mobile-menu__no">10</span>Contact</a></li>
+    </ol>
+    <a class="btn btn--primary mobile-menu__cta" href="mailto:health@trainnorthlabs.com">health@trainnorthlabs.com</a>
+  </nav>
+</div>
+
+<!-- Section rail. Desktop only: on narrow screens it sits over body copy, so
+     the hamburger menu above takes over below 900px. -->
 <nav class="section-rail" aria-label="Jump to section">
   <ul>
     <li><a href="#top"><span class="section-rail__dot"></span><span class="section-rail__label">Top</span></a></li>
