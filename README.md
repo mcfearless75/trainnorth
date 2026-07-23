@@ -26,9 +26,10 @@ would leave the library and calculator blank in a demo.
 
 ## Before any production launch
 
-1. **Remove the demo guard.** `index.html` carries `noindex, nofollow` in a
-   clearly marked block near the top. The production robots directive sits
-   commented directly beneath it. The site will not rank until this is swapped.
+1. **Indexing is ON.** `index.html` carries the production robots directive and
+   the site is live at https://trainnorthlabs.com/. Everything published here is
+   now a public claim, so treat placeholder content as a launch blocker rather
+   than a nice-to-have (see "Content still to verify" below).
 2. **Video IDs.** `assets/js/videos.js` has one real entry and six placeholders
    marked `verified: false`. Placeholders are never rendered, so nothing breaks -
    the wall simply shows fewer cards. Replace `id` with the real 11-character
@@ -83,6 +84,23 @@ source text - that accuracy is the entire proposition.
   grading system and the research-use-only constraints.
 - **YouTube uses a click-to-load facade.** No third-party script or cookie loads
   until the visitor presses play.
+
+### Content still to verify (now indexable)
+
+The site is indexed, so everything on it reads as a factual claim by
+TRAINNORTH:LABS. These items were written to demonstrate the format and must be
+replaced with real figures or removed:
+
+- **The transformation record.** Start and current weight, the week number, and
+  every weekly figure in the timeline. Publishing someone else's numbers as your
+  own record is the one mistake this site cannot survive, given its entire
+  proposition is honest documentation.
+- **Video coverage.** Six of seven entries are unverified placeholders. They are
+  skipped at render time so nothing breaks, but the wall stays thin until real
+  IDs are added.
+- **Research notes.** Three summary cards with no linked sources.
+- **Referral terms.** The code and the discount/priority claims must match the
+  actual supplier arrangement.
 
 ### Known gaps, ranked
 

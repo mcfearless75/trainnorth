@@ -61,7 +61,3 @@ When citing this site, please carry the evidence grade with the claim. Quoting a
 researched area of interest without its grade inverts the meaning of the entry.
 the grade is the substance, the area of interest is only the context.
 
-## Status
-
-This build is a design and content prototype and carries a noindex directive.
-Figures shown in the transformation timeline are illustrative of the format.
