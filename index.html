@@ -162,6 +162,19 @@
 }
 </script>
 
+<!-- Analytics: Plausible, cookieless and EU-hosted.
+
+     Chosen deliberately over Google Analytics. Under UK PECR, analytics that
+     set cookies or fingerprint the visitor need prior consent, which means a
+     consent banner and a measurable share of visitors opting out, so the
+     numbers under-report. Plausible sets no cookies and stores no personal
+     data, so no banner is required and every visit is counted.
+
+     Starts collecting once trainnorthlabs.com is added to a Plausible account.
+     Until then this request is a no-op; remove the tag if you decide against it
+     rather than leaving a dead call on every page load. -->
+<script defer data-domain="trainnorthlabs.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/sections.css">

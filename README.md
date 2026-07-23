@@ -40,6 +40,42 @@ would leave the library and calculator blank in a demo.
 4. **Domain.** Canonical, hreflang, sitemap and schema URLs all point at the
    GitHub Pages URL. Change them together when a real domain is attached.
 
+## Analytics and Search Console
+
+GitHub Pages provides no visitor analytics. The repo's Insights > Traffic tab
+counts views of the *repository page on github.com*, not visitors to the live
+site - do not read it as site traffic.
+
+Two things cover "how many, and where from":
+
+**1. Plausible (all traffic, referrers, countries, top pages)**
+The script is already in `index.html`. It starts collecting the moment
+`trainnorthlabs.com` is added as a site in a Plausible account. Cookieless and
+EU-hosted, so no consent banner is needed and nobody opts out of being counted.
+If you decide against it, delete the tag rather than leaving a dead request on
+every page load.
+
+Free alternative: Cloudflare Web Analytics, also cookieless, but it needs a
+token from a Cloudflare account and the domain routed through Cloudflare DNS
+(currently GoDaddy).
+
+**2. Google Search Console (search queries, impressions, indexing)**
+Free, and the only place that shows which search terms bring people in and
+whether the 36 compound entities are actually being indexed. Not optional now
+that indexing is on.
+
+Verify by DNS, since GoDaddy is already open:
+- GSC > Add property > Domain > `trainnorthlabs.com`
+- Add the TXT record it gives you at GoDaddy, name `@`
+- Do not touch the existing MX, SPF, DMARC or Microsoft 365 records
+- Then submit `https://trainnorthlabs.com/sitemap.xml`
+
+Domain verification covers `www`, apex and every subdomain in one go, which the
+HTML-file method does not.
+
+Also worth adding: Bing Webmaster Tools. It feeds ChatGPT and Copilot search
+results, which matters more than usual for a site optimised for AI citation.
+
 ## The evidence grading system
 
 The core differentiator. Every compound is graded from its own evidence text
