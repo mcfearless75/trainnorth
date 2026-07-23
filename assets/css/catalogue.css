@@ -89,6 +89,79 @@
 .prod__unit { font-size: 0.625rem; }
 .prod__from--tbc { font-family: var(--font-eyebrow); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.625rem; }
 
+/* --- Links between the catalogue and the library -------------------------
+   The evidence badge on a product is a control, not a label: it opens the
+   library entry behind the price. Underlined on hover so it reads as
+   clickable without adding a second colour to a card that already carries
+   an evidence colour. */
+.ev-badge--link {
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  border-bottom: 1px dashed currentColor;
+}
+
+.ev-badge--link:hover { border-bottom-style: solid; }
+
+.ev-badge--none {
+  color: var(--text-dim);
+  font-family: var(--font-eyebrow);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.spec__evidence {
+  display: inline-block;
+  margin-top: var(--space-3);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-eyebrow);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal);
+  border-bottom: 1px solid var(--signal-line);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.spec__evidence:hover { border-bottom-color: var(--signal); }
+
+/* Purchasable forms listed inside the library drawer. */
+.drawer__buy { list-style: none; margin: 0; padding: 0; }
+
+.drawer__buy li { margin-bottom: 0.35rem; }
+
+.drawer__buy button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: var(--space-3);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  font-size: var(--text-sm);
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+
+.drawer__buy button:hover {
+  border-color: var(--signal);
+  background: var(--signal-wash);
+}
+
+.drawer__buy .mono { font-size: 0.6875rem; color: var(--text-dim); }
+
 /* --- Basket -------------------------------------------------------------- */
 
 .basket {

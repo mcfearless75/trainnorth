@@ -1,27 +1,28 @@
 /* ==========================================================================
-   Catalogue data
+   Catalogue data - generated from the supplier product list
 
-   PRICES ARE NOT SET YET. Every `price` below is null, which the catalogue
-   renders as "On enquiry" rather than a number. Nothing shows a fabricated
-   figure at any point.
+   PRICING
+   Prices are per BOX (vial count stated per variant), in USD, and represent
+   the supplier list price plus 50%. Only this single tier is present in this
+   file. The supplier's own cost and the intermediate tier are deliberately
+   NOT included: this is a public repository serving a static site, so anything
+   stored here is readable by any visitor, and shipping the cost column would
+   publish the margin.
 
-   TO LOAD THE PRICE SHEET
-   Fill the `price` values in CATALOGUE below. One number per strength, in
-   whole units of the currency set in CURRENCY, and priced PER BOX (10 vials),
-   not per vial. Anything left null keeps showing "On enquiry", so the sheet
-   can be loaded in stages.
+   EXCLUDED FROM THE SUPPLIER LIST
+   HGH (somatropin), HCG, and every multi-ingredient injectable blend
+   containing albuterol or lidocaine. These are controlled or prescription-only
+   medicines rather than research compounds, and carry a different legal
+   exposure from the rest of the catalogue. Do not re-add them without advice.
 
-   Columns needed from the spreadsheet:
-     compound name | strength | vials per box | price per box
-
-   Product name, description and research bullets are derived from the
-   36-compound library in peptides.js rather than duplicated here, so the
-   evidence grading stays the single source of truth and cannot drift.
+   GRADING
+   `lib` points at the matching entry in the 36-compound library, which
+   supplies the description, research areas and evidence tier. `lib: null`
+   means the product has no library entry yet and renders as "Not yet
+   reviewed" rather than borrowing a grade it has not earned.
    ========================================================================== */
 
 const CURRENCY = { code: "USD", symbol: "$" };
-
-/* Referral terms applied to the basket subtotal. */
 const REFERRAL = { code: "TN-REF5", discount: 0.05 };
 
 const CATALOGUE_CATEGORIES = [
@@ -32,92 +33,74 @@ const CATALOGUE_CATEGORIES = [
   { key: "cognitive",   label: "Nootropic & cognitive" },
   { key: "endocrine",   label: "Hormones & endocrine" },
   { key: "cellular",    label: "Metabolic & cellular" },
-  { key: "blends",      label: "Injectable blends" },
+  { key: "cosmetic",    label: "Cosmetic & dermal" },
   { key: "accessories", label: "Accessories" }
 ];
 
-/* Each entry maps a library compound to its catalogue category and the
-   strengths the supplier lists. `ref` must match the `n` field in peptides.js
-   exactly, or the entry is skipped and logged rather than rendered blank. */
-const CATALOGUE = [
-  { ref: "Semaglutide",                 cat: "glp1",      variants: [{ mg: 5, price: null }, { mg: 10, price: null }, { mg: 15, price: null }, { mg: 20, price: null }] },
-  { ref: "Tirzepatide",                 cat: "glp1",      variants: [{ mg: 5, price: null }, { mg: 10, price: null }, { mg: 15, price: null }, { mg: 20, price: null }] },
-  { ref: "Retatrutide",                 cat: "glp1",      variants: [{ mg: 5, price: null }, { mg: 10, price: null }, { mg: 15, price: null }, { mg: 20, price: null }] },
-  { ref: "Cagrilintide",                cat: "glp1",      variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "AOD-9604",                    cat: "glp1",      variants: [{ mg: 5, price: null }] },
-  { ref: "MOTS-c",                      cat: "cellular",  variants: [{ mg: 10, price: null }] },
-  { ref: "SLU-PP-332 (MitoBurn)",       cat: "cellular",  variants: [{ mg: 10, price: null }] },
-  { ref: "NAD+",                        cat: "cellular",  variants: [{ mg: 500, price: null }, { mg: 1000, price: null }] },
-  { ref: "Epithalon",                   cat: "cellular",  variants: [{ mg: 10, price: null }, { mg: 50, price: null }] },
-
-  { ref: "Tesamorelin",                 cat: "growth",    variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "Ipamorelin",                  cat: "growth",    variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "CJC-1295 (no DAC)",           cat: "growth",    variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "CJC-1295 (with DAC)",         cat: "growth",    variants: [{ mg: 2, price: null }, { mg: 5, price: null }] },
-  { ref: "Sermorelin",                  cat: "growth",    variants: [{ mg: 5, price: null }, { mg: 15, price: null }] },
-  { ref: "GHRP-2",                      cat: "growth",    variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "GHRP-6",                      cat: "growth",    variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "Hexarelin",                   cat: "growth",    variants: [{ mg: 2, price: null }, { mg: 5, price: null }] },
-  { ref: "IGF-1 LR3",                   cat: "growth",    variants: [{ mg: 1, price: null }] },
-  { ref: "Follistatin 344",             cat: "growth",    variants: [{ mg: 1, price: null }] },
-
-  { ref: "BPC-157",                     cat: "recovery",  variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "TB-500",                      cat: "recovery",  variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "KPV",                         cat: "recovery",  variants: [{ mg: 10, price: null }] },
-  { ref: "LL-37",                       cat: "recovery",  variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "Thymosin Alpha-1 (TA-1)",     cat: "recovery",  variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "GHK-Cu",                      cat: "recovery",  variants: [{ mg: 50, price: null }, { mg: 100, price: null }] },
-  { ref: "AHK-Cu",                      cat: "recovery",  variants: [{ mg: 50, price: null }] },
-
-  { ref: "Semax",                       cat: "cognitive", variants: [{ mg: 10, price: null }, { mg: 30, price: null }] },
-  { ref: "Selank",                      cat: "cognitive", variants: [{ mg: 10, price: null }, { mg: 30, price: null }] },
-  { ref: "Dihexa",                      cat: "cognitive", variants: [{ mg: 10, price: null }] },
-  { ref: "DSIP",                        cat: "cognitive", variants: [{ mg: 5, price: null }] },
-
-  { ref: "PT-141 (Bremelanotide)",      cat: "endocrine", variants: [{ mg: 10, price: null }] },
-  { ref: "Kisspeptin-10",               cat: "endocrine", variants: [{ mg: 5, price: null }, { mg: 10, price: null }] },
-  { ref: "Melanotan II (MT2)",          cat: "endocrine", variants: [{ mg: 10, price: null }] },
-
-  { ref: "BPC-157 + TB-500 blend",      cat: "blends",    variants: [{ mg: 20, price: null }] },
-  { ref: "CJC-1295 + Ipamorelin blend", cat: "blends",    variants: [{ mg: 10, price: null }] },
-  { ref: "Semax + Selank blend",        cat: "blends",    variants: [{ mg: 20, price: null }] }
+const PRODUCTS = [
+  { name: "Acetic Acid Water",                       cat: "accessories", lib: null,                            variants: [{ label: "3ml", vials: 10, price: 15 }, { label: "10ml", vials: 10, price: 21 }] },
+  { name: "Bacteriostatic Water",                    cat: "accessories", lib: null,                            variants: [{ label: "10ml", vials: 10, price: 21 }, { label: "3ml", vials: 10, price: 15 }] },
+  { name: "Sterile Water",                           cat: "accessories", lib: null,                            variants: [{ label: "10ml", vials: 10, price: 15 }] },
+  { name: "5-Amino-1MQ",                             cat: "cellular",    lib: null,                            variants: [{ label: "5mg", vials: 10, price: 70.5 }, { label: "10mg", vials: 10, price: 87 }, { label: "20mg", vials: 10, price: 100.5 }, { label: "50mg", vials: 10, price: 162 }] },
+  { name: "AICAR",                                   cat: "cellular",    lib: null,                            variants: [{ label: "50mg", vials: 10, price: 151.5 }, { label: "100mg", vials: 10, price: 226.5 }] },
+  { name: "Epithalon",                               cat: "cellular",    lib: "Epithalon",                     variants: [{ label: "10mg", vials: 10, price: 87 }, { label: "50mg", vials: 10, price: 324 }] },
+  { name: "FOXO4",                                   cat: "cellular",    lib: null,                            variants: [{ label: "2mg", vials: 10, price: 151.5 }, { label: "10mg", vials: 10, price: 703.5 }] },
+  { name: "Glutathione",                             cat: "cellular",    lib: null,                            variants: [{ label: "1500mg", vials: 10, price: 141 }, { label: "600mg", vials: 10, price: 81 }] },
+  { name: "L-Carnitine",                             cat: "cellular",    lib: null,                            variants: [{ label: "10ml 600mg/ml", vials: 1, price: 118.5 }] },
+  { name: "MOTS-c",                                  cat: "cellular",    lib: "MOTS-c",                        variants: [{ label: "10mg", vials: 10, price: 124.5 }, { label: "20mg", vials: 10, price: 249 }, { label: "40mg", vials: 10, price: 367.5 }] },
+  { name: "NAD+",                                    cat: "cellular",    lib: "NAD+",                          variants: [{ label: "500mg", vials: 10, price: 97.5 }, { label: "1000mg", vials: 10, price: 151.5 }] },
+  { name: "SLU-PP-332 (MitoBurn)",                   cat: "cellular",    lib: "SLU-PP-332 (MitoBurn)",         variants: [{ label: "5mg", vials: 10, price: 205.5 }] },
+  { name: "Vitamin B12",                             cat: "cellular",    lib: null,                            variants: [{ label: "10ml", vials: 10, price: 97.5 }] },
+  { name: "Adamax",                                  cat: "cognitive",   lib: null,                            variants: [{ label: "5mg", vials: 10, price: 157.5 }, { label: "10mg", vials: 10, price: 276 }] },
+  { name: "Cerebrolysin",                            cat: "cognitive",   lib: null,                            variants: [{ label: "60mg", vials: 6, price: 87 }] },
+  { name: "DSIP",                                    cat: "cognitive",   lib: "DSIP",                          variants: [{ label: "5mg", vials: 10, price: 97.5 }, { label: "10mg", vials: 10, price: 151.5 }, { label: "15mg", vials: 10, price: 216 }] },
+  { name: "PE 22-28",                                cat: "cognitive",   lib: null,                            variants: [{ label: "10mg", vials: 10, price: 157.5 }] },
+  { name: "Pinealon",                                cat: "cognitive",   lib: null,                            variants: [{ label: "10mg", vials: 10, price: 130.5 }] },
+  { name: "Selank",                                  cat: "cognitive",   lib: "Selank",                        variants: [{ label: "5mg", vials: 10, price: 82.5 }, { label: "10mg", vials: 10, price: 132 }] },
+  { name: "Semax",                                   cat: "cognitive",   lib: "Semax",                         variants: [{ label: "5mg", vials: 10, price: 72 }, { label: "10mg", vials: 10, price: 111 }] },
+  { name: "Semax + Selank blend",                    cat: "cognitive",   lib: "Semax + Selank blend",          variants: [{ label: "20mg", vials: 10, price: 216 }] },
+  { name: "AHK-Cu",                                  cat: "cosmetic",    lib: "AHK-Cu",                        variants: [{ label: "50mg", vials: 10, price: 97.5 }, { label: "100mg", vials: 10, price: 130.5 }] },
+  { name: "GHK-Cu",                                  cat: "cosmetic",    lib: "GHK-Cu",                        variants: [{ label: "50mg", vials: 10, price: 60 }, { label: "100mg", vials: 10, price: 66 }] },
+  { name: "Lemon Bottle",                            cat: "cosmetic",    lib: null,                            variants: [{ label: "10ml", vials: 10, price: 108 }] },
+  { name: "Matrixyl",                                cat: "cosmetic",    lib: null,                            variants: [{ label: "10mg", vials: 10, price: 81 }] },
+  { name: "PNC 27",                                  cat: "cosmetic",    lib: null,                            variants: [{ label: "5mg", vials: 10, price: 195 }, { label: "10mg", vials: 10, price: 355.5 }] },
+  { name: "SNAP-8",                                  cat: "cosmetic",    lib: null,                            variants: [{ label: "10mg", vials: 10, price: 87 }] },
+  { name: "Kisspeptin-10",                           cat: "endocrine",   lib: "Kisspeptin-10",                 variants: [{ label: "5mg", vials: 10, price: 97.5 }, { label: "10mg", vials: 10, price: 159 }] },
+  { name: "Melatonin I",                             cat: "endocrine",   lib: null,                            variants: [{ label: "10mg", vials: 10, price: 108 }] },
+  { name: "Melatonin II",                            cat: "endocrine",   lib: null,                            variants: [{ label: "10mg", vials: 10, price: 108 }] },
+  { name: "Oxytocin Acetate",                        cat: "endocrine",   lib: null,                            variants: [{ label: "5mg", vials: 10, price: 96 }, { label: "10mg", vials: 10, price: 126 }] },
+  { name: "PT-141 (Bremelanotide)",                  cat: "endocrine",   lib: "PT-141 (Bremelanotide)",        variants: [{ label: "10mg", vials: 10, price: 118.5 }] },
+  { name: "VIP",                                     cat: "endocrine",   lib: null,                            variants: [{ label: "5mg", vials: 10, price: 189 }, { label: "10mg", vials: 10, price: 286.5 }] },
+  { name: "AOD-9604",                                cat: "glp1",        lib: "AOD-9604",                      variants: [{ label: "5mg", vials: 10, price: 199.5 }, { label: "10mg", vials: 10, price: 361.5 }] },
+  { name: "Cagrilintide",                            cat: "glp1",        lib: "Cagrilintide",                  variants: [{ label: "5mg", vials: 10, price: 205.5 }, { label: "10mg", vials: 10, price: 330 }] },
+  { name: "HGH Fragment 176-191",                    cat: "glp1",        lib: null,                            variants: [{ label: "1mg", vials: 10, price: 55.5 }, { label: "2mg", vials: 10, price: 75 }, { label: "5mg", vials: 10, price: 148.5 }, { label: "10mg", vials: 10, price: 265.5 }, { label: "12mg", vials: 10, price: 298.5 }, { label: "15mg", vials: 10, price: 372 }] },
+  { name: "Retatrutide",                             cat: "glp1",        lib: "Retatrutide",                   variants: [{ label: "5mg", vials: 10, price: 93 }, { label: "10mg", vials: 10, price: 148.5 }, { label: "15mg", vials: 10, price: 216 }, { label: "20mg", vials: 10, price: 267 }, { label: "30mg", vials: 10, price: 364.5 }, { label: "40mg", vials: 10, price: 447 }, { label: "50mg", vials: 10, price: 517.5 }, { label: "60mg", vials: 10, price: 592.5 }] },
+  { name: "Retatrutide + Cagrilintide blend",        cat: "glp1",        lib: null,                            variants: [{ label: "10mg", vials: 10, price: 313.5 }] },
+  { name: "Semaglutide",                             cat: "glp1",        lib: "Semaglutide",                   variants: [{ label: "5mg", vials: 10, price: 54 }, { label: "10mg", vials: 10, price: 81 }, { label: "15mg", vials: 10, price: 103.5 }, { label: "20mg", vials: 10, price: 124.5 }, { label: "30mg", vials: 10, price: 189 }, { label: "50mg", vials: 10, price: 243 }] },
+  { name: "Tirzepatide",                             cat: "glp1",        lib: "Tirzepatide",                   variants: [{ label: "5mg", vials: 10, price: 66 }, { label: "10mg", vials: 10, price: 90 }, { label: "15mg", vials: 10, price: 118.5 }, { label: "20mg", vials: 10, price: 141 }, { label: "30mg", vials: 10, price: 195 }, { label: "40mg", vials: 10, price: 237 }, { label: "50mg", vials: 10, price: 303 }, { label: "60mg", vials: 10, price: 334.5 }, { label: "80mg", vials: 10, price: 388.5 }, { label: "100mg", vials: 10, price: 486 }, { label: "120mg", vials: 10, price: 592.5 }] },
+  { name: "ACE-031",                                 cat: "growth",      lib: null,                            variants: [{ label: "1mg", vials: 10, price: 108 }] },
+  { name: "CJC-1295 (no DAC)",                       cat: "growth",      lib: "CJC-1295 (no DAC)",             variants: [{ label: "5mg", vials: 10, price: 162 }, { label: "10mg", vials: 10, price: 297 }] },
+  { name: "CJC-1295 (with DAC)",                     cat: "growth",      lib: "CJC-1295 (with DAC)",           variants: [{ label: "2mg", vials: 10, price: 189 }, { label: "5mg", vials: 10, price: 340.5 }, { label: "10mg", vials: 10, price: 646.5 }] },
+  { name: "CJC-1295 + Ipamorelin blend",             cat: "growth",      lib: "CJC-1295 + Ipamorelin blend",   variants: [{ label: "10mg", vials: 10, price: 216 }] },
+  { name: "IGF-1 LR3",                               cat: "growth",      lib: "IGF-1 LR3",                     variants: [{ label: "0.1mg", vials: 10, price: 70.5 }, { label: "1mg", vials: 10, price: 378 }] },
+  { name: "Ipamorelin",                              cat: "growth",      lib: "Ipamorelin",                    variants: [{ label: "5mg", vials: 10, price: 79.5 }, { label: "10mg", vials: 10, price: 118.5 }] },
+  { name: "Tesamorelin",                             cat: "growth",      lib: "Tesamorelin",                   variants: [{ label: "5mg", vials: 10, price: 208.5 }, { label: "10mg", vials: 10, price: 351 }, { label: "20mg", vials: 10, price: 646.5 }] },
+  { name: "Ara-290",                                 cat: "recovery",    lib: null,                            variants: [{ label: "10mg", vials: 10, price: 151.5 }] },
+  { name: "BPC-157",                                 cat: "recovery",    lib: "BPC-157",                       variants: [{ label: "5mg", vials: 10, price: 87 }, { label: "10mg", vials: 10, price: 118.5 }, { label: "20mg", vials: 10, price: 205.5 }] },
+  { name: "BPC-157 + GHK-Cu + TB-500 + KPV blend",   cat: "recovery",    lib: null,                            variants: [{ label: "80mg", vials: 10, price: 442.5 }] },
+  { name: "BPC-157 + GHK-Cu + TB-500 blend",         cat: "recovery",    lib: null,                            variants: [{ label: "70mg", vials: 10, price: 378 }] },
+  { name: "BPC-157 + TB-500 blend (10+10)",          cat: "recovery",    lib: "BPC-157 + TB-500 blend",        variants: [{ label: "20mg", vials: 10, price: 367.5 }] },
+  { name: "BPC-157 + TB-500 blend (5+5)",            cat: "recovery",    lib: "BPC-157 + TB-500 blend",        variants: [{ label: "10mg", vials: 10, price: 199.5 }] },
+  { name: "KPV",                                     cat: "recovery",    lib: "KPV",                           variants: [{ label: "10mg", vials: 10, price: 108 }] },
+  { name: "SS-31",                                   cat: "recovery",    lib: null,                            variants: [{ label: "10mg", vials: 10, price: 162 }, { label: "50mg", vials: 10, price: 592.5 }] },
+  { name: "TB-500",                                  cat: "recovery",    lib: "TB-500",                        variants: [{ label: "5mg", vials: 10, price: 157.5 }, { label: "10mg", vials: 10, price: 264 }] },
+  { name: "Thymalin",                                cat: "recovery",    lib: null,                            variants: [{ label: "10mg", vials: 10, price: 132 }] },
+  { name: "Thymosin Alpha-1 (TA-1)",                 cat: "recovery",    lib: "Thymosin Alpha-1 (TA-1)",       variants: [{ label: "5mg", vials: 10, price: 189 }, { label: "10mg", vials: 10, price: 345 }] }
 ];
 
-/* Accessories have no library entry, so they carry their own copy. */
-const ACCESSORIES = [
-  {
-    ref: "Bacteriostatic Water",
-    cat: "accessories",
-    blurb: "Multi-use diluent for reconstitution. Benzyl alcohol preserved.",
-    research: ["Reconstitution solvent", "Multi-use vial"],
-    variants: [{ label: "3 ml", price: null }, { label: "10 ml", price: null }]
-  },
-  {
-    ref: "Sterile Water",
-    cat: "accessories",
-    blurb: "Single-use sterile water for injection. No preservative.",
-    research: ["Reconstitution solvent", "Single use"],
-    variants: [{ label: "10 ml", price: null }]
-  },
-  {
-    ref: "Acetic Acid Water",
-    cat: "accessories",
-    blurb: "Dilute acetic acid solvent for peptides with poor solubility in plain water.",
-    research: ["Low-solubility reconstitution"],
-    variants: [{ label: "10 ml", price: null }]
-  },
-  {
-    ref: "Insulin Syringes (U-100)",
-    cat: "accessories",
-    blurb: "U-100 graduated syringes. Matches the unit scale used by the reconstitution calculator.",
-    research: ["Measurement", "U-100 scale"],
-    variants: [{ label: "100 pack", price: null }]
-  }
-];
-
-/* Destinations offered by the supplier. Shipping is quoted by them, so this
-   selection is carried into the enquiry rather than used to compute a cost
-   here - a made-up shipping figure is worse than no figure. */
+/* Destinations offered by the supplier. Shipping is quoted by them, so the
+   selection is carried into the enquiry rather than costed here - an invented
+   shipping figure is worse than no figure. */
 const SHIP_TO = [
   { code: "GB", label: "United Kingdom" },
   { code: "IE", label: "Ireland" },
@@ -137,57 +120,41 @@ const SHIP_TO = [
   { code: "OTHER", label: "Elsewhere (ask supplier)" }
 ];
 
-const VIALS_PER_BOX = 10;
-
-/* Merge the catalogue overlay onto the library so names, descriptions and
-   research bullets have exactly one source. A ref that does not resolve is
-   reported rather than silently dropped, because a silent drop looks like a
-   supplier stock change instead of a typo. */
+/* Merge each product with its library entry so descriptions, research areas
+   and evidence tiers have exactly one source and cannot drift apart. A `lib`
+   value that fails to resolve is reported rather than silently dropped,
+   because a silent drop looks like a supplier stock change, not a typo. */
 function buildCatalogue() {
   const byName = {};
-  if (typeof PEPTIDES !== "undefined") {
-    PEPTIDES.forEach((p) => { byName[p.n] = p; });
-  }
+  if (typeof PEPTIDES !== "undefined") PEPTIDES.forEach((p) => { byName[p.n] = p; });
 
   const unresolved = [];
-  const items = CATALOGUE.map((entry) => {
-    const p = byName[entry.ref];
-    if (!p) { unresolved.push(entry.ref); return null; }
+
+  const items = PRODUCTS.map((prod) => {
+    const p = prod.lib ? byName[prod.lib] : null;
+    if (prod.lib && !p) unresolved.push(prod.lib);
+
     return {
-      ref: entry.ref,
-      cat: entry.cat,
-      blurb: p.ben[0] + ".",
-      research: p.ben.slice(0, 3),
-      route: p.route,
-      half: p.half,
-      evidence: typeof evidenceTier === "function" ? evidenceTier(p) : null,
-      variants: entry.variants.map((v) => ({
-        label: v.label || (v.mg + " mg"),
-        price: v.price
-      }))
+      name: prod.name,
+      cat: prod.cat,
+      lib: p ? prod.lib : null,
+      blurb: p ? p.ben[0] + "." : "Listed by the supplier. Not yet reviewed against the evidence library.",
+      research: p ? p.ben.slice(0, 3) : [],
+      route: p ? p.route : null,
+      half: p ? p.half : null,
+      evidence: p && typeof evidenceTier === "function" ? evidenceTier(p) : null,
+      variants: prod.variants.slice()
     };
-  }).filter(Boolean);
+  });
 
   if (unresolved.length && typeof console !== "undefined") {
-    console.warn("Catalogue refs not found in the compound library:", unresolved);
+    console.warn("Catalogue lib refs not found in the compound library:", unresolved);
   }
-
-  const extras = ACCESSORIES.map((a) => ({
-    ref: a.ref,
-    cat: a.cat,
-    blurb: a.blurb,
-    research: a.research,
-    route: null,
-    half: null,
-    evidence: null,
-    variants: a.variants.map((v) => ({ label: v.label, price: v.price }))
-  }));
-
-  return items.concat(extras);
+  return items;
 }
 
-/* True once at least one real price exists, which flips the catalogue from
-   enquiry-only presentation to showing totals. */
-function cataloguePriced() {
-  return buildCatalogue().some((i) => i.variants.some((v) => typeof v.price === "number"));
+/* Products carrying a given library compound, used to link a library entry to
+   everything purchasable that contains it. */
+function productsForCompound(libName) {
+  return PRODUCTS.filter((p) => p.lib === libName);
 }

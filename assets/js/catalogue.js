@@ -86,17 +86,27 @@ function productCard(item, index) {
     .filter(isPriced)
     .sort((a, b) => a - b)[0];
 
+  const boxOf = item.variants[0] ? (item.variants[0].vials || 10) : 10;
+
   const priceLine = isPriced(from)
-    ? `<span class="prod__from">from <strong>${money(from)}</strong> <span class="prod__unit">per box of ${VIALS_PER_BOX}</span></span>`
+    ? `<span class="prod__from">from <strong>${money(from)}</strong> <span class="prod__unit">per box of ${boxOf}</span></span>`
     : `<span class="prod__from prod__from--tbc">Price on enquiry</span>`;
 
   const ev = item.evidence && typeof EVIDENCE_TIERS !== "undefined" && EVIDENCE_TIERS[item.evidence];
 
+  /* Graded products link back to their library entry. Ungraded ones say so
+     plainly rather than showing a blank space where a grade should be, which
+     would read as an oversight instead of a deliberate gap. */
+  const badge = ev
+    ? `<button class="ev-badge ev-badge--link" type="button" data-evidence="${encodeURIComponent(item.lib)}"
+         style="--ev-colour: var(${ev.token})" title="See the evidence for ${item.lib}">${ev.label}</button>`
+    : `<span class="ev-badge ev-badge--none">Not yet reviewed</span>`;
+
   return `
     <article class="prod" style="animation-delay:${Math.min(index * 18, 360)}ms">
       <div class="prod__head">
-        <h3 class="prod__name">${item.ref}</h3>
-        ${ev ? `<span class="ev-badge" style="--ev-colour: var(${ev.token})">${ev.label}</span>` : ""}
+        <h3 class="prod__name">${item.name}</h3>
+        ${badge}
       </div>
       <p class="prod__blurb">${item.blurb}</p>
       <ul class="prod__research">
@@ -105,7 +115,7 @@ function productCard(item, index) {
       <div class="prod__strengths">${item.variants.map((v) => `<span>${v.label}</span>`).join("")}</div>
       <div class="prod__foot">
         ${priceLine}
-        <button class="btn btn--sm btn--primary" type="button" data-spec="${encodeURIComponent(item.ref)}">
+        <button class="btn btn--sm btn--primary" type="button" data-spec="${encodeURIComponent(item.name)}">
           Select
         </button>
       </div>
@@ -130,7 +140,7 @@ function renderCatalogue() {
 let specRef = null;
 
 function openSpec(ref) {
-  const item = items.find((i) => i.ref === ref);
+  const item = items.find((i) => i.name === ref);
   const modal = $("#specModal");
   const body = $("#specBody");
   if (!item || !modal || !body) return;
@@ -139,8 +149,9 @@ function openSpec(ref) {
 
   body.innerHTML = `
     <span class="eyebrow">Select specification</span>
-    <h3 class="display" style="margin:var(--space-2) 0 var(--space-2)">${item.ref}</h3>
+    <h3 class="display" style="margin:var(--space-2) 0 var(--space-2)">${item.name}</h3>
     <p class="muted" style="font-size:var(--text-sm)">${item.blurb}</p>
+    ${item.lib ? `<button class="spec__evidence" type="button" data-evidence="${encodeURIComponent(item.lib)}">See the evidence for ${item.lib} &rarr;</button>` : ""}
 
     <div class="field" style="margin-top:var(--space-5)">
       <label for="specShip">Shipping destination</label>
@@ -154,10 +165,10 @@ function openSpec(ref) {
       ${item.variants.map((v, i) => `
         <label class="spec__variant">
           <input type="radio" name="specVariant" value="${i}" ${i === 0 ? "checked" : ""}>
-          <span class="spec__variant-label">${v.label} &times; ${VIALS_PER_BOX} vials</span>
+          <span class="spec__variant-label">${v.label} &times; ${v.vials || 10} vials</span>
           <span class="spec__variant-price">
             ${priceLabel(v)}
-            <span class="spec__variant-unit">per box of ${VIALS_PER_BOX}, not per vial</span>
+            <span class="spec__variant-unit">per box of ${v.vials || 10}, not per vial</span>
           </span>
         </label>`).join("")}
     </div>
@@ -191,7 +202,7 @@ function closeSpec() {
 }
 
 function addFromSpec() {
-  const item = items.find((i) => i.ref === specRef);
+  const item = items.find((i) => i.name === specRef);
   if (!item) return;
 
   const chosen = $('input[name="specVariant"]:checked');
@@ -203,10 +214,10 @@ function addFromSpec() {
 
   shipTo = $("#specShip")?.value || shipTo;
 
-  const key = item.ref + "|" + variant.label;
+  const key = item.name + "|" + variant.label;
   const existing = basket.find((b) => b.key === key);
   if (existing) existing.qty = Math.min(99, existing.qty + qty);
-  else basket.push({ key, ref: item.ref, label: variant.label, price: variant.price, qty });
+  else basket.push({ key, ref: item.name, label: variant.label, vials: variant.vials || 10, price: variant.price, qty });
 
   saveBasket();
   renderBasket();
@@ -249,7 +260,7 @@ function renderBasket() {
     <li class="basket__line">
       <div>
         <span class="basket__name">${b.ref}</span>
-        <span class="basket__meta mono">${b.label} &times; ${VIALS_PER_BOX} &middot; ${b.qty} box${b.qty === 1 ? "" : "es"}</span>
+        <span class="basket__meta mono">${b.label} &times; ${b.vials || 10} &middot; ${b.qty} box${b.qty === 1 ? "" : "es"}</span>
       </div>
       <div class="basket__right">
         <span class="mono">${isPriced(b.price) ? money(b.price * b.qty) : "On enquiry"}</span>
@@ -286,7 +297,7 @@ function buildEnquiry() {
   ].filter((l) => l !== null);
 
   basket.forEach((b) => {
-    lines.push(`- ${b.ref} ${b.label} x ${VIALS_PER_BOX} vials, ${b.qty} box${b.qty === 1 ? "" : "es"}${isPriced(b.price) ? " (" + money(b.price) + " per box)" : ""}`);
+    lines.push(`- ${b.ref} ${b.label} x ${b.vials || 10} vials, ${b.qty} box${b.qty === 1 ? "" : "es"}${isPriced(b.price) ? " (" + money(b.price) + " per box)" : ""}`);
   });
 
   if (t.subtotal > 0) {
@@ -324,6 +335,30 @@ function init() {
     filter = btn.dataset.cat;
     $$("#catFilters .filter").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
     renderCatalogue();
+  });
+
+  /* Catalogue -> library. The evidence badge is the hinge between the two
+     halves of the site: a price is only meaningful next to what the evidence
+     actually supports, so every graded product can reach its library entry. */
+  document.addEventListener("click", (e) => {
+    const ev = e.target.closest("[data-evidence]");
+    if (ev) {
+      e.preventDefault();
+      closeSpec();
+      const name = decodeURIComponent(ev.dataset.evidence);
+      if (typeof window.openCompound === "function") window.openCompound(name);
+      return;
+    }
+
+    /* Library -> catalogue: opening the spec modal straight from the drawer
+       means a reader can go from evidence to purchase without hunting for the
+       product in the grid. */
+    const buy = e.target.closest("[data-open-product]");
+    if (buy) {
+      e.preventDefault();
+      if (typeof window.closeCompound === "function") window.closeCompound();
+      openSpec(decodeURIComponent(buy.dataset.openProduct));
+    }
   });
 
   grid.addEventListener("click", (e) => {

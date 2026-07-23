@@ -377,6 +377,8 @@ function openDrawer(name, trigger) {
       <p class="caution-note">${peptide.caution}</p>
     </div>
 
+    <div class="drawer__section" id="drawerBuy"></div>
+
     <div class="drawer__section">
       <button class="btn btn--primary" type="button" data-send-to-calc="${peptide.n}">
         Load into calculator
@@ -388,10 +390,47 @@ function openDrawer(name, trigger) {
       not a dosing recommendation, and not medical advice.
     </p>`;
 
+  /* Library -> catalogue. Populated after the fact because products.js may
+     not have loaded when the drawer template was written, and a compound with
+     nothing purchasable should show nothing rather than an empty heading. */
+  const buy = $("#drawerBuy");
+  if (buy && typeof productsForCompound === "function") {
+    const products = productsForCompound(peptide.n);
+    if (products.length) {
+      const cheapest = products
+        .flatMap((p) => p.variants.map((v) => v.price))
+        .filter((n) => typeof n === "number")
+        .sort((a, b) => a - b)[0];
+
+      buy.innerHTML = `
+        <h4>Available as</h4>
+        <ul class="drawer__buy">
+          ${products.map((p) => `
+            <li>
+              <button type="button" data-open-product="${encodeURIComponent(p.name)}">
+                <span>${p.name}</span>
+                <span class="mono">${p.variants.map((v) => v.label).join(" &middot; ")}</span>
+              </button>
+            </li>`).join("")}
+        </ul>
+        ${typeof cheapest === "number" ? `<p class="dim" style="font-size:var(--text-xs); margin-top:var(--space-3)">From ${CURRENCY.symbol}${cheapest} per box. Research use only.</p>` : ""}`;
+    } else {
+      buy.innerHTML = "";
+    }
+  }
+
   drawer.dataset.open = "true";
   document.body.style.overflow = "hidden";
   $(".drawer__close", drawer)?.focus();
 }
+
+/* Exposed so the catalogue can drive the drawer in both directions. */
+window.openCompound = function (name) {
+  const card = document.querySelector(`#libraryGrid [data-compound="${CSS.escape(name)}"]`);
+  openDrawer(name, card || document.activeElement);
+};
+
+window.closeCompound = function () { closeDrawer(); };
 
 function closeDrawer() {
   const drawer = $("#drawer");
