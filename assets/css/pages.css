@@ -257,3 +257,234 @@
 .contact-card h2 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.35rem; }
 .contact-card p { font-size: var(--text-sm); color: var(--text-muted); margin: 0; }
 .contact-card__val { display: block; margin-top: var(--space-3); font-family: var(--font-mono); font-size: var(--text-sm); color: var(--signal); }
+
+/* ==========================================================================
+   Research enquiry (/order/)
+   ========================================================================== */
+
+.shell--narrow { max-width: 52rem; }
+
+.ord__head { text-align: center; margin-inline: auto; }
+.ord__head .lead { margin-inline: auto; }
+.ord__head .code-chip { margin-top: var(--space-4); }
+
+.ord-stepper {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  position: relative;
+}
+
+.ord-stepper__dot { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+
+.ord-stepper__dot span {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-strong);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-dim);
+  transition: all var(--dur) var(--ease-out);
+}
+
+.ord-stepper__dot em {
+  font-family: var(--font-eyebrow);
+  font-style: normal;
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.ord-stepper__dot[data-state="current"] span { background: var(--signal); border-color: var(--signal); color: var(--on-signal); }
+.ord-stepper__dot[data-state="current"] em { color: var(--signal); }
+.ord-stepper__dot[data-state="done"] span { border-color: var(--ev-strong); color: var(--ev-strong); }
+
+.ord-card {
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: oklch(19% 0.020 255 / 0.55);
+}
+
+.ord-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: var(--space-4);
+}
+
+.ord-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.ord-card__head h2 { margin: 0; }
+
+.ord-card__head a {
+  font-family: var(--font-eyebrow);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--signal);
+  text-decoration: none;
+}
+
+.ord-line {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+  font-size: var(--text-sm);
+}
+
+.ord-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: 0.3rem;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.ord-row--credit { color: var(--ev-strong); }
+
+.ord-row--total {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--hairline);
+  color: var(--text);
+  font-size: var(--text-base);
+}
+
+.ord-note {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--signal-line);
+  border-radius: var(--radius);
+  background: var(--signal-wash);
+}
+
+.ord-note strong { font-size: var(--text-sm); }
+.ord-note p { margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
+
+/* Whole row is the target, not just the radio dot. */
+.ord-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  margin-bottom: 0.4rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+
+.ord-opt:hover { border-color: var(--hairline-strong); }
+.ord-opt:has(input:checked) { border-color: var(--signal); background: var(--signal-wash); }
+.ord-opt input { margin-top: 0.2rem; accent-color: var(--signal); flex: none; width: 1.05rem; height: 1.05rem; }
+.ord-opt span { display: flex; flex-direction: column; gap: 0.15rem; }
+.ord-opt strong { font-size: var(--text-sm); }
+.ord-opt em { font-style: normal; font-size: var(--text-xs); color: var(--text-dim); }
+
+.ord-next { list-style: none; margin: 0; padding: 0; }
+
+.ord-next li {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.ord-next li:last-child { border-bottom: 0; }
+.ord-next p { margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
+
+.ord-next__n {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--signal-line);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--signal);
+}
+
+.ord-actions { display: flex; justify-content: flex-end; margin-top: var(--space-5); }
+.ord-actions--split { justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+
+.ord-error {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--ev-limited);
+  border-radius: var(--radius);
+  background: oklch(74% 0.125 55 / 0.1);
+  font-size: var(--text-sm);
+  color: var(--bone-200);
+}
+
+.req { color: var(--ev-limited); }
+
+.ord [aria-invalid="true"] { border-color: var(--ev-limited); }
+
+.ord .field textarea,
+.ord .field input,
+.ord .field select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: var(--ink-900);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.ord .field textarea { min-height: 5.5rem; resize: vertical; }
+.ord .field input:focus, .ord .field select:focus, .ord .field textarea:focus { border-color: var(--signal); outline: none; }
+
+/* ==========================================================================
+   Sticky catalogue summary bar
+   ========================================================================== */
+
+.cat-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 46;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--gutter);
+  background: oklch(15% 0.018 255 / 0.96);
+  border-top: 1px solid var(--signal-line);
+  backdrop-filter: blur(16px);
+}
+
+.cat-bar__meta { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.cat-bar__count { font-family: var(--font-eyebrow); font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+.cat-bar__note { font-size: 0.625rem; color: var(--text-dim); }
+.cat-bar__total { font-family: var(--font-mono); font-size: 1.1rem; color: var(--text); }
+.cat-bar__right { display: flex; align-items: center; gap: var(--space-4); }
+
+@media (max-width: 34rem) {
+  .cat-bar { flex-wrap: wrap; gap: var(--space-2); }
+  .cat-bar__note { display: none; }
+  .cat-bar__right { width: 100%; justify-content: space-between; }
+}

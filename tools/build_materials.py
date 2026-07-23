@@ -158,6 +158,17 @@ def build() -> str:
   </div>
 </article>
 
+<div class="cat-bar" id="catBar" hidden>
+  <div class="cat-bar__meta">
+    <span class="cat-bar__count" id="barCount"></span>
+    <span class="cat-bar__note" id="barNote"></span>
+  </div>
+  <div class="cat-bar__right">
+    <span class="cat-bar__total" id="barTotal"></span>
+    <button class="btn btn--sm btn--primary" type="button" id="barSend">Research enquiry &rarr;</button>
+  </div>
+</div>
+
 <script src="/assets/js/catalogue.js?{ASSET_V}" defer></script>
 """
 

@@ -221,6 +221,7 @@ function addFromSpec() {
 
   saveBasket();
   renderBasket();
+  renderBar();
   closeSpec();
 }
 
@@ -311,10 +312,38 @@ function buildEnquiry() {
   return lines.join("\n");
 }
 
+/* --- Sticky summary bar --------------------------------------------------
+   A fixed bar rather than only a sidebar. On a phone the sidebar scrolls away
+   behind 58 products and the reader loses any sense that a selection exists;
+   the bar keeps the running total and the way out permanently in view. It is
+   removed from the accessibility tree entirely while empty so a screen reader
+   never meets an empty toolbar. */
+
+function renderBar() {
+  const bar = $("#catBar");
+  if (!bar) return;
+
+  const boxes = basket.reduce((n, b) => n + b.qty, 0);
+  if (!boxes) {
+    bar.hidden = true;
+    return;
+  }
+
+  const t = basketTotals();
+  bar.hidden = false;
+  $("#barCount").textContent = `${basket.length} item${basket.length === 1 ? "" : "s"} · ${boxes} box${boxes === 1 ? "" : "es"}`;
+  $("#barTotal").textContent = t.subtotal > 0 ? money(t.total) : "On enquiry";
+  $("#barNote").textContent = t.subtotal > 0
+    ? `after ${REFERRAL.code} −${REFERRAL.discount * 100}%, shipping quoted separately`
+    : "priced on enquiry";
+}
+
 function sendEnquiry() {
   if (!basket.length) return;
-  const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(buildEnquiry());
-  window.open(url, "_blank", "noopener,noreferrer");
+  // Hand off to /order/ rather than opening WhatsApp here. The supplier needs
+  // a destination and contact details to quote, and collecting them after the
+  // message has already opened means asking twice.
+  window.location.href = "/order/";
 }
 
 /* --- Wiring -------------------------------------------------------------- */
@@ -385,15 +414,18 @@ function init() {
     basket = basket.filter((b) => b.key !== key);
     saveBasket();
     renderBasket();
+    renderBar();
   });
 
   $("#basketClear")?.addEventListener("click", () => {
     basket = [];
     saveBasket();
     renderBasket();
+    renderBar();
   });
 
   $("#basketSend")?.addEventListener("click", sendEnquiry);
+  $("#barSend")?.addEventListener("click", sendEnquiry);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeSpec();
