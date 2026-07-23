@@ -1,4 +1,4 @@
-# TRAINNORTH — robots.txt
+# TRAINNORTH:LABS — robots.txt
 # Educational research reference. Research use only.
 #
 # NOTE: while this build is hosted as a pitch demo, index.html carries a
@@ -59,4 +59,4 @@ Crawl-delay: 10
 User-agent: MJ12bot
 Disallow: /
 
-Sitemap: https://mcfearless75.github.io/trainnorth/sitemap.xml
+Sitemap: https://trainnorthlabs.com/sitemap.xml

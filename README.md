@@ -1,4 +1,4 @@
-# TRAINNORTH — prototype build
+# TRAINNORTH:LABS — prototype build
 
 A static, dependency-free prototype of an evidence-graded research compound
 reference site. No build step. Open `index.html` directly or serve the folder.
@@ -34,7 +34,7 @@ would leave the library and calculator blank in a demo.
    the wall simply shows fewer cards. Replace `id` with the real 11-character
    YouTube ID, set `verified: true`, and add a matching `VideoObject` block to
    the head schema.
-3. **Share image.** `assets/og/trainnorth-share.jpg` is referenced but absent.
+3. **Share image.** `assets/og/trainnorthlabs-share.jpg` is referenced but absent.
    Needs a 1200×630 image.
 4. **Domain.** Canonical, hreflang, sitemap and schema URLs all point at the
    GitHub Pages URL. Change them together when a real domain is attached.

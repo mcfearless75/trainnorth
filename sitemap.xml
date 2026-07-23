@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  TRAINNORTH sitemap.
+  TRAINNORTH:LABS sitemap.
 
   The current build is a single-page site with in-page anchors. Anchors are
   deliberately NOT listed as separate <url> entries: Google ignores fragment
@@ -19,31 +19,31 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://mcfearless75.github.io/trainnorth/</loc>
+    <loc>https://trainnorthlabs.com/</loc>
     <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://mcfearless75.github.io/trainnorth/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://mcfearless75.github.io/trainnorth/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://trainnorthlabs.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trainnorthlabs.com/"/>
   </url>
 
   <!--
   Add as each route ships:
 
-  <url><loc>https://mcfearless75.github.io/trainnorth/peptide-library/</loc>          <changefreq>weekly</changefreq>  <priority>0.9</priority></url>
-  <url><loc>https://mcfearless75.github.io/trainnorth/tools/reconstitution/</loc>     <changefreq>monthly</changefreq> <priority>0.9</priority></url>
-  <url><loc>https://mcfearless75.github.io/trainnorth/journey/</loc>                  <changefreq>weekly</changefreq>  <priority>0.8</priority></url>
-  <url><loc>https://mcfearless75.github.io/trainnorth/research/</loc>                 <changefreq>weekly</changefreq>  <priority>0.8</priority></url>
-  <url><loc>https://mcfearless75.github.io/trainnorth/videos/</loc>                   <changefreq>weekly</changefreq>  <priority>0.7</priority></url>
-  <url><loc>https://mcfearless75.github.io/trainnorth/about/</loc>                    <changefreq>yearly</changefreq>  <priority>0.5</priority></url>
-  <url><loc>https://mcfearless75.github.io/trainnorth/contact/</loc>                  <changefreq>yearly</changefreq>  <priority>0.4</priority></url>
-  <url><loc>https://mcfearless75.github.io/trainnorth/privacy/</loc>                  <changefreq>yearly</changefreq>  <priority>0.2</priority></url>
+  <url><loc>https://trainnorthlabs.com/peptide-library/</loc>          <changefreq>weekly</changefreq>  <priority>0.9</priority></url>
+  <url><loc>https://trainnorthlabs.com/tools/reconstitution/</loc>     <changefreq>monthly</changefreq> <priority>0.9</priority></url>
+  <url><loc>https://trainnorthlabs.com/journey/</loc>                  <changefreq>weekly</changefreq>  <priority>0.8</priority></url>
+  <url><loc>https://trainnorthlabs.com/research/</loc>                 <changefreq>weekly</changefreq>  <priority>0.8</priority></url>
+  <url><loc>https://trainnorthlabs.com/videos/</loc>                   <changefreq>weekly</changefreq>  <priority>0.7</priority></url>
+  <url><loc>https://trainnorthlabs.com/about/</loc>                    <changefreq>yearly</changefreq>  <priority>0.5</priority></url>
+  <url><loc>https://trainnorthlabs.com/contact/</loc>                  <changefreq>yearly</changefreq>  <priority>0.4</priority></url>
+  <url><loc>https://trainnorthlabs.com/privacy/</loc>                  <changefreq>yearly</changefreq>  <priority>0.2</priority></url>
 
   Per-compound pages are the largest organic opportunity here: 36 entities,
   each with genuine search demand and almost no well-sourced UK content.
   Ship them as individual indexable pages, one per compound, e.g.
 
-  <url><loc>https://mcfearless75.github.io/trainnorth/peptide-library/bpc-157/</loc>  <changefreq>monthly</changefreq> <priority>0.8</priority></url>
+  <url><loc>https://trainnorthlabs.com/peptide-library/bpc-157/</loc>  <changefreq>monthly</changefreq> <priority>0.8</priority></url>
 
   Do not generate all 36 as thin template pages. Google classifies that as
   scaled content abuse. Each page needs its own sourced write-up.

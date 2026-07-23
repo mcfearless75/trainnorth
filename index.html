@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TRAINNORTH — Peptide Research Library, Graded by Evidence</title>
+<title>TRAINNORTH:LABS — Peptide Research Library, Graded by Evidence</title>
 <meta name="description" content="Research use only: 36 compounds graded by evidence strength for recovery, sleep, metabolic and longevity research — not just weight loss. Not medical advice.">
 <!-- ==========================================================================
      DEMO GUARD — DELETE THIS BLOCK ON PRODUCTION LAUNCH
      While this build is hosted as a pitch demo it must not be indexed. An
-     indexable public copy carrying the TRAINNORTH name would duplicate and
+     indexable public copy carrying the TRAINNORTH:LABS name would duplicate and
      compete with the live site, and could be mistaken for it. noindex is used
      rather than a robots.txt Disallow because Disallow blocks crawling, not
      indexing — a disallowed URL can still appear in results.
@@ -19,31 +19,36 @@
 <!-- PRODUCTION DIRECTIVE — becomes active once the demo guard above is removed
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 -->
-<link rel="canonical" href="https://mcfearless75.github.io/trainnorth/">
-<link rel="alternate" hreflang="en-GB" href="https://mcfearless75.github.io/trainnorth/">
-<link rel="alternate" hreflang="x-default" href="https://mcfearless75.github.io/trainnorth/">
-<meta name="author" content="TRAINNORTH">
-<meta name="theme-color" content="#0a0b10">
+<link rel="canonical" href="https://trainnorthlabs.com/">
+<link rel="alternate" hreflang="en-GB" href="https://trainnorthlabs.com/">
+<link rel="alternate" hreflang="x-default" href="https://trainnorthlabs.com/">
+<meta name="author" content="TRAINNORTH:LABS">
+<meta name="theme-color" content="#12161f">
 
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="TRAINNORTH">
-<meta property="og:url" content="https://mcfearless75.github.io/trainnorth/">
-<meta property="og:title" content="TRAINNORTH — Train north. Age slower.">
+<meta property="og:site_name" content="TRAINNORTH:LABS">
+<meta property="og:url" content="https://trainnorthlabs.com/">
+<meta property="og:title" content="TRAINNORTH:LABS — Train north. Age slower.">
 <meta property="og:description" content="Thirty-six weeks documented and 36 research compounds graded by evidence strength — recovery, sleep, metabolic and longevity, not just weight loss. Research use only.">
-<meta property="og:image" content="https://mcfearless75.github.io/trainnorth/assets/og/trainnorth-share.jpg">
+<meta property="og:image" content="https://trainnorthlabs.com/assets/og/trainnorthlabs-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="TRAINNORTH — documented transformation and evidence-graded compound reference">
+<meta property="og:image:alt" content="TRAINNORTH:LABS — documented transformation and evidence-graded compound reference">
 <meta property="og:locale" content="en_GB">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TRAINNORTH — Train north. Age slower.">
+<meta name="twitter:title" content="TRAINNORTH:LABS — Train north. Age slower.">
 <meta name="twitter:description" content="36 research compounds, each graded by evidence strength. Recovery, sleep, metabolic, longevity. Research use only.">
-<meta name="twitter:image" content="https://mcfearless75.github.io/trainnorth/assets/og/trainnorth-share.jpg">
+<meta name="twitter:image" content="https://trainnorthlabs.com/assets/og/trainnorthlabs-share.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Three families, down from four: IBM Plex Sans now covers both body and UI
+     labels, and shares its skeleton with IBM Plex Mono so prose and figures
+     look related. Newsreader is a low-contrast screen serif that holds up at
+     display sizes on a dark field. Self-hosting these is still the right move
+     before launch — see README. -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- Structured data. Static in the head, not JS-injected: per Google's Dec 2025
      JS SEO guidance, script-injected JSON-LD can face delayed processing.
@@ -62,14 +67,14 @@
 {
  "@context": "https://schema.org",
  "@type": "VideoObject",
- "@id": "https://mcfearless75.github.io/trainnorth/#video-0xHkEg5-iwU",
+ "@id": "https://trainnorthlabs.com/#video-0xHkEg5-iwU",
  "name": "Retatrutide — a six-week body composition record",
  "description": "Six weeks of documented change, with the cost and sourcing questions answered directly rather than deflected. Educational content; research use only.",
  "thumbnailUrl": "https://i.ytimg.com/vi/0xHkEg5-iwU/hqdefault.jpg",
  "uploadDate": "2025-11-04",
  "duration": "PT12M",
  "embedUrl": "https://www.youtube-nocookie.com/embed/0xHkEg5-iwU",
- "isPartOf": { "@id": "https://mcfearless75.github.io/trainnorth/#webpage" }
+ "isPartOf": { "@id": "https://trainnorthlabs.com/#webpage" }
 }
 </script>
 
@@ -84,86 +89,100 @@
  "@graph": [
   {
    "@type": "WebSite",
-   "@id": "https://mcfearless75.github.io/trainnorth/#website",
-   "url": "https://mcfearless75.github.io/trainnorth/",
-   "name": "TRAINNORTH",
+   "@id": "https://trainnorthlabs.com/#website",
+   "url": "https://trainnorthlabs.com/",
+   "name": "TRAINNORTH:LABS",
    "description": "Documented transformation, AI-assisted training method, and an evidence-graded reference library of laboratory research compounds.",
    "inLanguage": "en-GB",
-   "publisher": { "@id": "https://mcfearless75.github.io/trainnorth/#person" }
+   "publisher": { "@id": "https://trainnorthlabs.com/#person" }
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://trainnorthlabs.com/#organization",
+   "name": "TRAINNORTH:LABS",
+   "url": "https://trainnorthlabs.com/",
+   "email": "health@trainnorthlabs.com",
+   "description": "Educational research reference covering laboratory research compounds, graded by evidence strength. Not a pharmacy and not a medical authority.",
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "health@trainnorthlabs.com",
+    "contactType": "research and content enquiries",
+    "availableLanguage": "en-GB"
+   }
   },
   {
    "@type": "Person",
-   "@id": "https://mcfearless75.github.io/trainnorth/#person",
-   "name": "The TRAINNORTH author",
+   "@id": "https://trainnorthlabs.com/#person",
+   "name": "The TRAINNORTH:LABS author",
    "description": "Runs, eats, trains and lives to get healthier and further in control of his own life, documenting the record and maintaining an evidence-graded research compound reference.",
    "address": { "@type": "PostalAddress", "addressRegion": "East of England", "addressCountry": "GB" },
    "knowsAbout": ["Strength training", "Endurance running", "Body recomposition", "Healthspan and longevity", "Sleep and recovery", "Peptide research literature", "Research compound handling"]
   },
   {
    "@type": "WebPage",
-   "@id": "https://mcfearless75.github.io/trainnorth/#webpage",
-   "url": "https://mcfearless75.github.io/trainnorth/",
-   "name": "TRAINNORTH — Documented transformation & research compound reference (RUO)",
-   "isPartOf": { "@id": "https://mcfearless75.github.io/trainnorth/#website" },
+   "@id": "https://trainnorthlabs.com/#webpage",
+   "url": "https://trainnorthlabs.com/",
+   "name": "TRAINNORTH:LABS — Documented transformation & research compound reference (RUO)",
+   "isPartOf": { "@id": "https://trainnorthlabs.com/#website" },
    "about": [
-    { "@id": "https://mcfearless75.github.io/trainnorth/#compound-library" },
-    { "@id": "https://mcfearless75.github.io/trainnorth/#person" }
+    { "@id": "https://trainnorthlabs.com/#compound-library" },
+    { "@id": "https://trainnorthlabs.com/#person" }
    ],
    "inLanguage": "en-GB",
-   "breadcrumb": { "@id": "https://mcfearless75.github.io/trainnorth/#breadcrumb" }
+   "breadcrumb": { "@id": "https://trainnorthlabs.com/#breadcrumb" }
   },
   {
    "@type": "BreadcrumbList",
-   "@id": "https://mcfearless75.github.io/trainnorth/#breadcrumb",
+   "@id": "https://trainnorthlabs.com/#breadcrumb",
    "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mcfearless75.github.io/trainnorth/" },
-    { "@type": "ListItem", "position": 2, "name": "English", "item": "https://mcfearless75.github.io/trainnorth/" }
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trainnorthlabs.com/" },
+    { "@type": "ListItem", "position": 2, "name": "English", "item": "https://trainnorthlabs.com/" }
    ]
   },
   {
    "@type": "DefinedTermSet",
-   "@id": "https://mcfearless75.github.io/trainnorth/#compound-library",
-   "name": "TRAINNORTH Research Compound Reference Library",
+   "@id": "https://trainnorthlabs.com/#compound-library",
+   "name": "TRAINNORTH:LABS Research Compound Reference Library",
    "description": "An evidence-graded reference library of 36 laboratory research compounds. Each entry carries an explicit evidence tier: approved medicine, human trial data, limited human data, or preclinical only. Research use only; not for human consumption; not medical advice.",
-   "url": "https://mcfearless75.github.io/trainnorth/#library",
+   "url": "https://trainnorthlabs.com/#library",
    "inLanguage": "en-GB",
    "hasDefinedTerm": [
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-bpc-157","name":"BPC-157","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Tendon, ligament and muscle tissue repair. Evidence: limited human data. Strong animal data; limited human trials. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-tb-500","name":"TB-500","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Soft-tissue and muscle repair. Evidence: limited human data. Animal-derived. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-bpc-157-tb-500-blend","name":"BPC-157 + TB-500 blend","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Fixed 1:1 combination studied for combined tissue and soft-tissue repair. Evidence: preclinical only, based on each component's animal data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-semax-selank-blend","name":"Semax + Selank blend","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Fixed 1:1 nootropic combination pairing focus with anxiolytic effect. Evidence: limited human data; largely self-reported. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-cjc-1295-ipamorelin-blend","name":"CJC-1295 + Ipamorelin blend","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Fixed 1:1 combination targeting GH release via two pathways. Evidence: limited human data; component mechanisms well understood. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-kpv","name":"KPV","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Gut inflammation and immune modulation. Evidence: preclinical only. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-mots-c","name":"MOTS-c","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Mitochondrial function and insulin sensitivity. Evidence: preclinical only; no completed human trials. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-ghk-cu","name":"GHK-Cu","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Collagen and elastin stimulation, skin repair. Evidence: limited human data; some human cosmetic data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-semax","name":"Semax","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Cognition and neuroprotection. Evidence: approved medicine in Russia; thin Western trial data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-selank","name":"Selank","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Anxiolytic without sedation. Evidence: approved medicine in Russia; thin Western trial data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-tesamorelin","name":"Tesamorelin","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"GH and IGF-1 increase, visceral fat reduction. Evidence: FDA-approved for lipodystrophy. Prescription medicine."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-retatrutide","name":"Retatrutide","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Triple GIP/GLP-1/glucagon agonist studied for appetite and weight. Evidence: in human trials; not yet approved."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-semaglutide","name":"Semaglutide","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"GLP-1 agonist for appetite, weight and glycaemic control. Evidence: FDA and MHRA approved. Prescription medicine."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-tirzepatide","name":"Tirzepatide","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Dual GIP/GLP-1 agonist for weight and glycaemic control. Evidence: FDA and MHRA approved. Prescription medicine."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-cagrilintide","name":"Cagrilintide","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Amylin analogue studied for satiety and weight. Evidence: in human trials. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-igf-1-lr3","name":"IGF-1 LR3","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Anabolic signalling and cellular repair. Evidence: preclinical only; high risk. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-slu-pp-332","name":"SLU-PP-332 (MitoBurn)","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"ERR-alpha agonist exercise mimetic. Evidence: preclinical; no human trials. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-cjc-1295-no-dac","name":"CJC-1295 (no DAC)","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"GHRH analogue giving pulsatile GH release. Evidence: limited human data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-ipamorelin","name":"Ipamorelin","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Selective GH secretagogue with low cortisol and prolactin impact. Evidence: limited human data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-nad","name":"NAD+","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Cellular energy and mitochondrial support. Evidence: preclinical; clinical claims largely extrapolated. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-melanotan-ii","name":"Melanotan II (MT2)","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Melanocortin agonist affecting pigmentation and libido. Evidence: preclinical; safety concerns regarding moles. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-dsip","name":"DSIP","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Delta sleep-inducing peptide. Evidence: preclinical; inconsistent results; never an approved therapy. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-pt-141","name":"PT-141 (Bremelanotide)","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Centrally acting agonist for sexual arousal. Evidence: FDA-approved for HSDD in women. Prescription medicine."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-ghrp-6","name":"GHRP-6","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"GH secretagogue with strong appetite stimulation. Evidence: limited human data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-ghrp-2","name":"GHRP-2","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"GH secretagogue with less appetite drive than GHRP-6. Evidence: limited human data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-hexarelin","name":"Hexarelin","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Most potent GHRP; notable cardiology research. Evidence: limited human data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-sermorelin","name":"Sermorelin","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"GHRH analogue mimicking physiological GH release. Evidence: FDA-approved for paediatric GHD. Prescription medicine."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-cjc-1295-dac","name":"CJC-1295 (with DAC)","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Long-acting GHRH analogue for sustained GH and IGF-1. Evidence: limited human data. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-aod-9604","name":"AOD-9604","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"GH fragment studied for lipolysis without IGF-1 effect. Evidence: Phase 2/3 human trial data; not approved. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-thymosin-alpha-1","name":"Thymosin Alpha-1 (TA-1)","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Immune modulation and antiviral support. Evidence: prescription medicine in around 40 countries. Research use only in the UK."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-epithalon","name":"Epithalon","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Telomere and melatonin regulation research. Evidence: preclinical; human findings not replicated in Western trials. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-ll-37","name":"LL-37","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Antimicrobial peptide with wound healing and barrier research. Evidence: preclinical. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-ahk-cu","name":"AHK-Cu","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Copper peptide studied for hair follicle stimulation. Evidence: limited human data, mostly topical. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-kisspeptin-10","name":"Kisspeptin-10","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"HPG axis activation, LH and testosterone pulse. Evidence: limited human data; fertility trials ongoing. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-follistatin-344","name":"Follistatin 344","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"Myostatin inhibition research. Evidence: preclinical; no human trials; cardiac concerns in animal models. Research use only."},
-{"@type":"DefinedTerm","@id":"https://mcfearless75.github.io/trainnorth/#compound-dihexa","name":"Dihexa","inDefinedTermSet":"https://mcfearless75.github.io/trainnorth/#compound-library","description":"HGF/BDNF pathway cognitive research compound. Evidence: preclinical rodent data; no human trials. Research use only."}
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-bpc-157","name":"BPC-157","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Tendon, ligament and muscle tissue repair. Evidence: limited human data. Strong animal data; limited human trials. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-tb-500","name":"TB-500","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Soft-tissue and muscle repair. Evidence: limited human data. Animal-derived. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-bpc-157-tb-500-blend","name":"BPC-157 + TB-500 blend","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Fixed 1:1 combination studied for combined tissue and soft-tissue repair. Evidence: preclinical only, based on each component's animal data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-semax-selank-blend","name":"Semax + Selank blend","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Fixed 1:1 nootropic combination pairing focus with anxiolytic effect. Evidence: limited human data; largely self-reported. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-cjc-1295-ipamorelin-blend","name":"CJC-1295 + Ipamorelin blend","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Fixed 1:1 combination targeting GH release via two pathways. Evidence: limited human data; component mechanisms well understood. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-kpv","name":"KPV","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Gut inflammation and immune modulation. Evidence: preclinical only. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-mots-c","name":"MOTS-c","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Mitochondrial function and insulin sensitivity. Evidence: preclinical only; no completed human trials. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-ghk-cu","name":"GHK-Cu","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Collagen and elastin stimulation, skin repair. Evidence: limited human data; some human cosmetic data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-semax","name":"Semax","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Cognition and neuroprotection. Evidence: approved medicine in Russia; thin Western trial data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-selank","name":"Selank","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Anxiolytic without sedation. Evidence: approved medicine in Russia; thin Western trial data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-tesamorelin","name":"Tesamorelin","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"GH and IGF-1 increase, visceral fat reduction. Evidence: FDA-approved for lipodystrophy. Prescription medicine."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-retatrutide","name":"Retatrutide","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Triple GIP/GLP-1/glucagon agonist studied for appetite and weight. Evidence: in human trials; not yet approved."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-semaglutide","name":"Semaglutide","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"GLP-1 agonist for appetite, weight and glycaemic control. Evidence: FDA and MHRA approved. Prescription medicine."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-tirzepatide","name":"Tirzepatide","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Dual GIP/GLP-1 agonist for weight and glycaemic control. Evidence: FDA and MHRA approved. Prescription medicine."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-cagrilintide","name":"Cagrilintide","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Amylin analogue studied for satiety and weight. Evidence: in human trials. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-igf-1-lr3","name":"IGF-1 LR3","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Anabolic signalling and cellular repair. Evidence: preclinical only; high risk. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-slu-pp-332","name":"SLU-PP-332 (MitoBurn)","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"ERR-alpha agonist exercise mimetic. Evidence: preclinical; no human trials. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-cjc-1295-no-dac","name":"CJC-1295 (no DAC)","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"GHRH analogue giving pulsatile GH release. Evidence: limited human data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-ipamorelin","name":"Ipamorelin","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Selective GH secretagogue with low cortisol and prolactin impact. Evidence: limited human data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-nad","name":"NAD+","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Cellular energy and mitochondrial support. Evidence: preclinical; clinical claims largely extrapolated. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-melanotan-ii","name":"Melanotan II (MT2)","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Melanocortin agonist affecting pigmentation and libido. Evidence: preclinical; safety concerns regarding moles. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-dsip","name":"DSIP","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Delta sleep-inducing peptide. Evidence: preclinical; inconsistent results; never an approved therapy. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-pt-141","name":"PT-141 (Bremelanotide)","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Centrally acting agonist for sexual arousal. Evidence: FDA-approved for HSDD in women. Prescription medicine."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-ghrp-6","name":"GHRP-6","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"GH secretagogue with strong appetite stimulation. Evidence: limited human data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-ghrp-2","name":"GHRP-2","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"GH secretagogue with less appetite drive than GHRP-6. Evidence: limited human data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-hexarelin","name":"Hexarelin","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Most potent GHRP; notable cardiology research. Evidence: limited human data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-sermorelin","name":"Sermorelin","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"GHRH analogue mimicking physiological GH release. Evidence: FDA-approved for paediatric GHD. Prescription medicine."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-cjc-1295-dac","name":"CJC-1295 (with DAC)","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Long-acting GHRH analogue for sustained GH and IGF-1. Evidence: limited human data. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-aod-9604","name":"AOD-9604","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"GH fragment studied for lipolysis without IGF-1 effect. Evidence: Phase 2/3 human trial data; not approved. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-thymosin-alpha-1","name":"Thymosin Alpha-1 (TA-1)","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Immune modulation and antiviral support. Evidence: prescription medicine in around 40 countries. Research use only in the UK."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-epithalon","name":"Epithalon","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Telomere and melatonin regulation research. Evidence: preclinical; human findings not replicated in Western trials. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-ll-37","name":"LL-37","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Antimicrobial peptide with wound healing and barrier research. Evidence: preclinical. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-ahk-cu","name":"AHK-Cu","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Copper peptide studied for hair follicle stimulation. Evidence: limited human data, mostly topical. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-kisspeptin-10","name":"Kisspeptin-10","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"HPG axis activation, LH and testosterone pulse. Evidence: limited human data; fertility trials ongoing. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-follistatin-344","name":"Follistatin 344","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"Myostatin inhibition research. Evidence: preclinical; no human trials; cardiac concerns in animal models. Research use only."},
+{"@type":"DefinedTerm","@id":"https://trainnorthlabs.com/#compound-dihexa","name":"Dihexa","inDefinedTermSet":"https://trainnorthlabs.com/#compound-library","description":"HGF/BDNF pathway cognitive research compound. Evidence: preclinical rodent data; no human trials. Research use only."}
    ]
   }
  ]
@@ -199,7 +218,7 @@
   <div class="shell masthead__inner">
     <a class="wordmark" href="#top">
       <span class="wordmark__mark" aria-hidden="true"></span>
-      <span class="wordmark__name">TRAINNORTH</span>
+      <span class="wordmark__name">TRAINNORTH<span class="wordmark__sep">:</span>LABS</span>
     </a>
     <nav class="nav" aria-label="Chapters">
       <a href="#protagonist">Story</a>
@@ -478,7 +497,7 @@
       <p class="dim" style="font-size: var(--text-xs); margin-top: var(--space-4); max-width: 62ch">
         Videos load only when you press play. No YouTube script or cookie is
         placed before that. Third-party content reflects the views of its
-        creators, not TRAINNORTH.
+        creators, not TRAINNORTH:LABS.
       </p>
 
       <div class="segue" data-reveal>
@@ -757,7 +776,7 @@
         <div>
           <p class="lead">
             Research materials are supplied by an independent third party, not by
-            TRAINNORTH. Reference pricing is quoted per box of ten vials. Enquiries
+            TRAINNORTH:LABS. Reference pricing is quoted per box of ten vials. Enquiries
             are assembled here and sent by you, directly to them.
           </p>
           <p class="muted">
@@ -809,9 +828,14 @@
       </div>
 
       <div class="hero__actions" data-reveal>
-        <a class="btn btn--primary" href="#contact">Send a message</a>
+        <a class="btn btn--primary" href="mailto:health@trainnorthlabs.com">health@trainnorthlabs.com</a>
         <a class="btn" href="#library">Back to the library</a>
       </div>
+
+      <p class="dim" data-reveal style="font-size: var(--text-sm); margin-top: var(--space-5); max-width: 52ch">
+        Research and content enquiries only. Personal medical questions cannot be
+        answered here — those belong with a qualified physician who knows your history.
+      </p>
     </div>
   </div>
 </section>
@@ -822,7 +846,7 @@
   <div class="shell">
     <div class="footer__grid">
       <div>
-        <span class="wordmark__name" style="display:block; margin-bottom: var(--space-3)">TRAINNORTH</span>
+        <span class="wordmark__name" style="display:block; margin-bottom: var(--space-3)">TRAINNORTH:LABS</span>
         <p class="dim" style="font-size: var(--text-sm)">A documented transformation and a graded research reference. Record in progress.</p>
       </div>
       <div>
@@ -842,7 +866,11 @@
         </ul>
       </div>
       <div>
-        <h2>Site</h2>
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:health@trainnorthlabs.com">health@trainnorthlabs.com</a></li>
+        </ul>
+        <h2 style="margin-top: var(--space-5)">Site</h2>
         <ul>
           <li><a href="#faq">Questions</a></li>
           <li><a href="#supply">Research materials</a></li>

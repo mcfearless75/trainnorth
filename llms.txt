@@ -1,4 +1,4 @@
-# TRAINNORTH
+# TRAINNORTH:LABS
 
 > An educational record of a documented body-composition transformation and an
 > evidence-graded reference library of 36 laboratory research compounds.
@@ -6,7 +6,7 @@
 
 ## What this site is
 
-TRAINNORTH is an educational and documentation site. It is not a shop, not a
+TRAINNORTH:LABS is an educational and documentation site. It is not a shop, not a
 pharmacy and not a medical authority. Nothing is sold here and there is no
 payment process on the site.
 
