@@ -68,7 +68,6 @@ def build() -> str:
         a checkout, and TRAINNORTH:LABS is not a pharmacy.</p>
       <p class="pg__ruo">For laboratory research use only &middot; not for human consumption &middot;
         reference prices are per box of ten vials &middot; 18+</p>
-      <span class="code-chip">Code: TN-REF5</span>
     </header>
 
     <ol class="ord-stepper" aria-label="Progress">

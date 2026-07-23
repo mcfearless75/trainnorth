@@ -237,8 +237,7 @@ function basketTotals() {
     if (isPriced(b.price)) subtotal += b.price * b.qty;
     else unpriced += b.qty;
   });
-  const discount = subtotal * REFERRAL.discount;
-  return { subtotal, discount, total: subtotal - discount, unpriced };
+  return { subtotal, total: subtotal, unpriced };
 }
 
 function renderBasket() {
@@ -272,8 +271,6 @@ function renderBasket() {
   const t = basketTotals();
   $("#basketTotals").innerHTML = `
     ${t.subtotal > 0 ? `
-      <div class="basket__row"><span>Subtotal</span><span class="mono">${money(t.subtotal)}</span></div>
-      <div class="basket__row basket__row--credit"><span>Referral ${REFERRAL.code} (&minus;${REFERRAL.discount * 100}%)</span><span class="mono">&minus;${money(t.discount)}</span></div>
       <div class="basket__row basket__row--total"><span>Indicative total</span><span class="mono">${money(t.total)}</span></div>
     ` : ""}
     ${t.unpriced ? `<p class="dim" style="font-size:var(--text-xs); margin-top:var(--space-3)">${t.unpriced} box${t.unpriced === 1 ? "" : "es"} priced on enquiry.</p>` : ""}
@@ -291,7 +288,6 @@ function buildEnquiry() {
   const lines = [
     "Hello, I would like to make a research enquiry.",
     "",
-    "Referral code: " + REFERRAL.code,
     dest ? "Shipping destination: " + dest.label : null,
     "",
     "Items (Research Use Only, not for human consumption):"
@@ -303,11 +299,13 @@ function buildEnquiry() {
 
   if (t.subtotal > 0) {
     lines.push("");
-    lines.push(`Indicative total after referral discount: ${money(t.total)}`);
+    lines.push(`Indicative total: ${money(t.total)}`);
   }
 
   lines.push("");
   lines.push("Please confirm availability, current pricing, shipping cost and certificate of analysis.");
+  lines.push("");
+  lines.push("Ref: " + REF_TAG);
 
   return lines.join("\n");
 }
@@ -334,7 +332,7 @@ function renderBar() {
   $("#barCount").textContent = `${basket.length} item${basket.length === 1 ? "" : "s"} · ${boxes} box${boxes === 1 ? "" : "es"}`;
   $("#barTotal").textContent = t.subtotal > 0 ? money(t.total) : "On enquiry";
   $("#barNote").textContent = t.subtotal > 0
-    ? `after ${REFERRAL.code} −${REFERRAL.discount * 100}%, shipping quoted separately`
+    ? "shipping quoted separately"
     : "priced on enquiry";
 }
 

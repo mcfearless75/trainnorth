@@ -126,7 +126,6 @@ $$("[data-copy]").forEach((btn) => {
     const lines = [
       "Hello, I would like to make a research enquiry.",
       "",
-      "Referral code: TN-REF5",
       v("#eqCountry") ? "Shipping destination: " + v("#eqCountry") : null,
       "",
       "Research material (Research Use Only, not for human consumption):",
@@ -135,7 +134,9 @@ $$("[data-copy]").forEach((btn) => {
       v("#eqEmail") ? "Contact email: " + v("#eqEmail") : null,
       v("#eqNotes") ? "Notes: " + v("#eqNotes") : null,
       "",
-      "Please confirm availability, pricing, shipping cost and certificate of analysis."
+      "Please confirm availability, pricing, shipping cost and certificate of analysis.",
+      "",
+      "Ref: TN-REF5"
     ].filter((l) => l !== null);
     return lines.join("\n");
   }

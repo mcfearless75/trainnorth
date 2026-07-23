@@ -23,7 +23,10 @@
    ========================================================================== */
 
 const CURRENCY = { code: "USD", symbol: "$" };
-const REFERRAL = { code: "TN-REF5", discount: 0.05 };
+/* Supplier-side attribution tag. Appended quietly to outgoing enquiries so
+   referral commission reconciles. No customer discount is attached to it and
+   it is never marketed on the page. */
+const REF_TAG = "TN-REF5";
 
 const CATALOGUE_CATEGORIES = [
   { key: "all",         label: "All" },

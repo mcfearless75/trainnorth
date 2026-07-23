@@ -20,8 +20,9 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
 const STORAGE_KEY = "tnl.basket.v1";
 const WHATSAPP_NUMBER = "85256440181";
-const DISCOUNT = 0.05;
-const CODE = "TN-REF5";
+/* Attribution tag only. No discount is offered or calculated; the tag is
+   appended to the enquiry so supplier-side referrals reconcile. */
+const REF_TAG = "TN-REF5";
 
 /* Shipping is quoted by the supplier. Populate this table only with rates
    confirmed by them: an invented delivery cost on a live price list is worse
@@ -54,9 +55,8 @@ function totals() {
   });
   const ship = SHIPPING[countryCode()];
   const shipping = ship ? ship.cost : null;
-  const discount = products * DISCOUNT;
-  const total = products - discount + (shipping || 0);
-  return { products, discount, shipping, total, unpriced };
+  const total = products + (shipping || 0);
+  return { products, shipping, total, unpriced };
 }
 
 /* --- Step 1: materials --------------------------------------------------- */
@@ -91,7 +91,6 @@ function renderMaterials() {
       <div class="ord-row"><span>Products</span><span class="mono">${money(t.products)}</span></div>
       <div class="ord-row"><span>Shipping${countryName() ? " (" + countryName() + ")" : ""}</span>
         <span class="mono">${ship ? money(ship.cost) + " · " + ship.days + " days" : "Quoted by supplier"}</span></div>
-      <div class="ord-row ord-row--credit"><span>Referral discount ${CODE} (5%)</span><span class="mono">&minus;${money(t.discount)}</span></div>
       <div class="ord-row ord-row--total"><span>${ship ? "Estimated total" : "Estimated total excl. shipping"}</span><span class="mono">${money(t.total)} USD</span></div>
     ` : ""}
     ${t.unpriced ? `<p class="dim" style="font-size:var(--text-xs); margin-top:var(--space-3)">${t.unpriced} box${t.unpriced === 1 ? "" : "es"} priced on enquiry.</p>` : ""}
@@ -129,8 +128,6 @@ function compose() {
   const lines = [
     "RESEARCH ENQUIRY (Research Use Only, not for human consumption)",
     "",
-    "Referral code: " + CODE,
-    "",
     "MATERIALS:"
   ];
 
@@ -142,7 +139,6 @@ function compose() {
   if (t.products > 0) {
     lines.push("");
     lines.push("Products: " + money(t.products));
-    lines.push("Referral discount 5%: -" + money(t.discount));
     lines.push("Shipping: " + (ship ? money(ship.cost) + " (" + ship.days + " days)" : "to be quoted"));
     lines.push("Estimated total: " + money(t.total) + " USD");
   }
@@ -175,6 +171,8 @@ function compose() {
 
   lines.push("");
   lines.push("Please confirm availability, final pricing, shipping cost and certificate of analysis.");
+  lines.push("");
+  lines.push("Ref: " + REF_TAG);
 
   return lines.join("\n");
 }

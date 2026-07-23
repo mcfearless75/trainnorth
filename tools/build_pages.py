@@ -23,7 +23,7 @@ import json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://trainnorthlabs.com"
 WA = "85256440181"
-ASSET_V = "v=20260723g"
+ASSET_V = "v=20260723h"
 
 # --------------------------------------------------------------------------
 # Read the JS data files rather than duplicating them
@@ -273,9 +273,9 @@ def compound_page(p):
         <a class="btn btn--primary btn--whatsapp" target="_blank" rel="noopener noreferrer"
            href="https://wa.me/{WA}?text={{WA_TEXT}}">Research enquiry via WhatsApp</a>
       </section>"""
-        wa_text = ("Hello, I would like to make a research enquiry.%0A%0AReferral code: TN-REF5%0A%0A"
+        wa_text = ("Hello, I would like to make a research enquiry.%0A%0A"
                    f"Compound: {p['n']}%0A%0APlease confirm availability, pricing, shipping and certificate of "
-                   "analysis. Research Use Only, not for human consumption.")
+                   "analysis. Research Use Only, not for human consumption.%0A%0ARef: TN-REF5")
         buy = buy.replace("{WA_TEXT}", wa_text)
 
     ld = json.dumps({

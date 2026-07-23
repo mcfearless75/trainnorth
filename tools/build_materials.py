@@ -88,8 +88,8 @@ def build() -> str:
         <p>Arranged directly with the supplier. No payment is taken on this site.</p>
       </div>
       <div>
-        <span class="vital__label">Referral code</span>
-        <p>TN-REF5 gives 5% off, priority processing and priority shipping. Disclosed arrangement.</p>
+        <span class="vital__label">Independence</span>
+        <p>TRAINNORTH:LABS receives a referral benefit on supplier orders. Disclosed, not marketed.</p>
       </div>
     </div>
 
