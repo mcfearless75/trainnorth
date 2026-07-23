@@ -10,7 +10,7 @@
   margin-bottom: var(--space-5);
   border: 1px solid var(--hairline);
   border-radius: var(--radius);
-  background: oklch(19% 0.020 255 / 0.55);
+  background: oklch(100% 0 0 / 0.72);
 }
 
 .cat__terms p {
@@ -170,7 +170,7 @@
   padding: var(--space-5);
   border: 1px solid var(--signal-line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(165deg, oklch(24% 0.04 245 / 0.4), oklch(17% 0.018 255 / 0.6));
+  background: linear-gradient(165deg, oklch(94% 0.02 245 / 0.6), oklch(100% 0 0 / 0.8));
   backdrop-filter: blur(10px);
 }
 
@@ -277,7 +277,7 @@
   inset: 0;
   border: 0;
   cursor: pointer;
-  background: oklch(10% 0.014 255 / 0.78);
+  background: oklch(25% 0.02 255 / 0.45);
   backdrop-filter: blur(6px);
 }
 

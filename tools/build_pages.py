@@ -23,7 +23,7 @@ import json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://trainnorthlabs.com"
 WA = "85256440181"
-ASSET_V = "v=20260723e"
+ASSET_V = "v=20260723f"
 
 # --------------------------------------------------------------------------
 # Read the JS data files rather than duplicating them
@@ -108,7 +108,7 @@ def head(title, desc, canonical, extra=""):
 <meta name="description" content="{esc(desc)}">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="{canonical}">
-<meta name="theme-color" content="#12161f">
+<meta name="theme-color" content="#f4f5f7">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="TRAINNORTH:LABS">
 <meta property="og:title" content="{esc(title)}">

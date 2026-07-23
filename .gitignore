@@ -13,3 +13,11 @@ node_modules/
 .claude/
 .claude-flow/
 .mcp.json
+
+# Local agent tooling - never deploy
+.swarm/
+CLAUDE.md
+ruvector.db
+*.db
+*.db-shm
+*.db-wal

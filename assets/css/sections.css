@@ -130,7 +130,7 @@
   flex-direction: column;
   gap: 0.15rem;
   border-radius: var(--radius);
-  background: oklch(16% 0.017 255 / 0.5);
+  background: oklch(100% 0 0 / 0.6);
   border: 1px solid transparent;
   backdrop-filter: blur(10px);
   transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
@@ -138,7 +138,7 @@
 
 .section-rail:hover ul,
 .section-rail:focus-within ul {
-  background: oklch(19% 0.019 255 / 0.9);
+  background: oklch(100% 0 0 / 0.95);
   border-color: var(--hairline);
 }
 
@@ -253,7 +253,7 @@
   position: fixed;
   inset: 0;
   z-index: 55;
-  background: oklch(13% 0.016 255 / 0.97);
+  background: oklch(97.5% 0.003 250 / 0.98);
   backdrop-filter: blur(14px);
   overflow-y: auto;
   opacity: 0;
@@ -416,7 +416,7 @@
 .vitals {
   border: 1px solid var(--hairline-strong);
   border-radius: var(--radius-lg);
-  background: oklch(19% 0.020 255 / 0.62);
+  background: oklch(100% 0 0 / 0.8);
   backdrop-filter: blur(14px);
   padding: var(--space-5);
   box-shadow: var(--shadow-deep);
@@ -507,7 +507,7 @@
   margin-bottom: var(--space-5);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-lg);
-  background: oklch(19% 0.020 255 / 0.55);
+  background: oklch(100% 0 0 / 0.72);
 }
 
 .current-stat { display: flex; flex-direction: column; gap: 0.2rem; }
@@ -568,7 +568,7 @@
   padding: var(--space-5);
   border: 1px solid var(--hairline);
   border-radius: var(--radius);
-  background: linear-gradient(160deg, oklch(18% 0.016 255 / 0.7), oklch(14% 0.012 255 / 0.4));
+  background: linear-gradient(160deg, oklch(97% 0.005 250 / 0.85), oklch(100% 0 0 / 0.5));
   overflow: hidden;
   transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
 }
@@ -633,7 +633,7 @@
 
 .week:hover {
   border-color: var(--signal-line);
-  background: oklch(24% 0.022 255 / 0.85);
+  background: oklch(100% 0 0 / 0.95);
   transform: translateY(-4px);
 }
 
@@ -667,7 +667,7 @@
   padding: var(--space-4);
   border: 1px solid var(--hairline);
   border-radius: var(--radius);
-  background: oklch(19% 0.020 255 / 0.6);
+  background: oklch(98% 0.003 250 / 0.88);
   position: sticky;
   top: 4.5rem;
   z-index: 20;
@@ -863,7 +863,7 @@
 .drawer[data-open="true"] { pointer-events: auto; }
 
 .drawer__scrim {
-  background: oklch(6% 0.01 255 / 0.72);
+  background: oklch(25% 0.02 255 / 0.4);
   opacity: 0;
   transition: opacity var(--dur) var(--ease-out);
   border: 0;
@@ -949,7 +949,7 @@
   padding: var(--space-5);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-lg);
-  background: oklch(19% 0.020 255 / 0.62);
+  background: oklch(100% 0 0 / 0.8);
 }
 
 .field { margin-bottom: var(--space-4); }
@@ -991,7 +991,7 @@
   padding: var(--space-5);
   border: 1px solid var(--signal-line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(165deg, oklch(20% 0.04 245 / 0.42), oklch(14% 0.012 255 / 0.6));
+  background: linear-gradient(165deg, oklch(93% 0.022 245 / 0.55), oklch(100% 0 0 / 0.72));
   position: sticky;
   top: 6rem;
 }
@@ -1028,7 +1028,7 @@
   position: absolute;
   inset: 0 auto 0 0;
   width: 0%;
-  background: linear-gradient(180deg, oklch(84% 0.098 238 / 0.85), oklch(58% 0.108 247 / 0.7));
+  background: linear-gradient(180deg, oklch(66% 0.105 240 / 0.9), oklch(48% 0.11 246 / 0.85));
   transition: width var(--dur-slow) var(--ease-out);
 }
 
@@ -1171,7 +1171,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, oklch(12% 0.012 255 / 0.1), oklch(12% 0.012 255 / 0.75));
+  background: linear-gradient(180deg, oklch(20% 0.01 255 / 0.05), oklch(20% 0.015 255 / 0.62));
 }
 
 .vid__play {
@@ -1200,14 +1200,14 @@
   z-index: 2;
   padding: 0.25rem 0.6rem;
   border-radius: 999px;
-  background: oklch(12% 0.012 255 / 0.82);
+  background: oklch(18% 0.015 255 / 0.78);
   border: 1px solid var(--hairline-strong);
   font-family: var(--font-eyebrow);
   font-size: 0.5625rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bone-200);
+  color: oklch(96% 0.005 250);
 }
 
 .vid__frame {
@@ -1270,7 +1270,7 @@
   padding: var(--space-6);
   border: 1px solid var(--signal-line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(150deg, oklch(20% 0.04 245 / 0.35), oklch(14% 0.012 255 / 0.55));
+  background: linear-gradient(150deg, oklch(94% 0.02 245 / 0.5), oklch(100% 0 0 / 0.7));
 }
 
 @media (max-width: 860px) { .supply { grid-template-columns: 1fr; } }
@@ -1340,7 +1340,7 @@
   font-family: var(--font-mono);
   font-size: var(--text-base);
   letter-spacing: 0.08em;
-  color: var(--signal-bright);
+  color: var(--signal);
   background: var(--signal-wash);
 }
 

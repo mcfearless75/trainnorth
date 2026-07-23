@@ -1,73 +1,70 @@
 /* ==========================================================================
-   Design tokens - cool slate / laboratory blue
+   Design tokens - clinical light / laboratory blue
 
-   Direction: a deep blue-grey field with a single steel-blue signal accent.
-   Neutrals carry a slight blue cast (chroma ~0.012–0.022 around hue 255) so
-   greys read as cool and considered rather than muddy - a pure 0-chroma grey
-   next to a blue accent looks dirty by comparison.
+   Direction: cool paper-white field, dark slate text, one steel-blue accent.
+   Deliberately cooler and more clinical than the cream competitors use, so
+   the site reads laboratory rather than lifestyle.
 
-   Because the field is almost entirely desaturated, the only saturated things
-   on the page are the ones carrying meaning: the evidence tiers and the
-   category rails. That is deliberate - colour is information here, not
-   decoration, and a calm field is what makes long-form scrolling comfortable.
+   NAMING NOTE. The scale names date from the original dark build and are kept
+   so every component continues to resolve: --ink-* are the SURFACE neutrals
+   (ink-900 is the page background, ink-600 the deepest surface grey) and
+   --bone-* are the TEXT neutrals (bone-100 is the darkest, near-black). Rename
+   only with a full sweep of every stylesheet.
+
+   Because the field is almost entirely neutral, the only saturated things on
+   the page are the ones carrying meaning: the accent, the evidence tiers and
+   the category rails. Colour is information here, not decoration.
    ========================================================================== */
 
 :root {
-  /* --- Field (cool slate) ------------------------------------------------ */
-  --ink-900: oklch(16% 0.017 255);
-  --ink-850: oklch(19% 0.019 255);
-  --ink-800: oklch(23% 0.021 255);
-  --ink-700: oklch(29% 0.022 255);
-  --ink-600: oklch(38% 0.021 255);
+  /* --- Field (paper surfaces; ink-900 = page, lighter numbers = deeper) --- */
+  --ink-900: oklch(97.5% 0.003 250);
+  --ink-850: oklch(95.5% 0.004 250);
+  --ink-800: oklch(93% 0.006 250);
+  --ink-700: oklch(89% 0.008 250);
+  --ink-600: oklch(82% 0.010 250);
 
-  /* --- Paper (cool light neutrals) --------------------------------------- */
-  --bone-100: oklch(96% 0.005 250);
-  --bone-200: oklch(89% 0.008 250);
-  --bone-400: oklch(75% 0.011 250);
-  --bone-600: oklch(60% 0.013 250);
+  /* --- Text (bone-100 darkest -> bone-600 dimmest legible) ---------------- */
+  --bone-100: oklch(23% 0.015 255);
+  --bone-200: oklch(32% 0.014 253);
+  --bone-400: oklch(44% 0.012 251);
+  --bone-600: oklch(54% 0.010 250);
 
-  /* --- Signal (steel blue - actions and emphasis, used sparingly) --------- */
-  --signal: oklch(73% 0.117 242);
-  --signal-bright: oklch(82% 0.098 238);
-  --signal-deep: oklch(52% 0.108 247);
-  --signal-wash: oklch(73% 0.117 242 / 0.14);
-  --signal-line: oklch(73% 0.117 242 / 0.34);
+  /* --- Signal (steel blue, darkened to hold contrast on white) ------------ */
+  --signal: oklch(49% 0.115 245);
+  --signal-bright: oklch(58% 0.105 242);
+  --signal-deep: oklch(36% 0.095 248);
+  --signal-wash: oklch(49% 0.115 245 / 0.09);
+  --signal-line: oklch(49% 0.115 245 / 0.35);
 
-  /* Foreground for anything sitting on a filled signal surface. Cool and
-     dark so it belongs to the blue family rather than fighting it. */
-  --on-signal: oklch(17% 0.030 250);
+  /* Foreground on a filled signal surface. */
+  --on-signal: oklch(99% 0.002 250);
 
-  /* --- Data (charts, metrics - never decorative) -------------------------- */
-  --data: oklch(80% 0.082 205);
-  --data-wash: oklch(80% 0.082 205 / 0.14);
+  /* --- Data (charts and metrics only, never decorative) ------------------- */
+  --data: oklch(52% 0.085 205);
+  --data-wash: oklch(52% 0.085 205 / 0.12);
 
-  /* --- Evidence strength scale -------------------------------------------
-     Kept chromatic against the desaturated field. These four are the most
-     important information on the page, so they are allowed to be the most
-     saturated thing on it. Muted slightly from pure hues to sit calmly. */
-  --ev-strong: oklch(76% 0.115 165);
-  --ev-moderate: oklch(80% 0.115 95);
-  --ev-limited: oklch(74% 0.125 55);
-  --ev-preclinical: oklch(70% 0.085 300);
+  /* --- Evidence strength scale --------------------------------------------
+     The most important information on the page, so the most saturated. All
+     four sit near 45-52% lightness to stay legible as text on white. */
+  --ev-strong: oklch(50% 0.115 160);
+  --ev-moderate: oklch(52% 0.105 85);
+  --ev-limited: oklch(53% 0.135 45);
+  --ev-preclinical: oklch(48% 0.105 300);
 
-  /* --- Semantic ---------------------------------------------------------- */
+  /* --- Semantic ----------------------------------------------------------- */
   --bg: var(--ink-900);
   --bg-raised: var(--ink-850);
-  --bg-card: oklch(21% 0.020 255 / 0.66);
+  --bg-card: oklch(100% 0 0 / 0.75);
   --text: var(--bone-100);
   --text-muted: var(--bone-400);
   --text-dim: var(--bone-600);
-  --hairline: oklch(100% 0 0 / 0.10);
-  --hairline-strong: oklch(100% 0 0 / 0.19);
+  --hairline: oklch(0% 0 0 / 0.09);
+  --hairline-strong: oklch(0% 0 0 / 0.17);
 
   /* --- Type ---------------------------------------------------------------
-     Newsreader is a low-contrast screen serif - it holds its weight at very
-     large display sizes without the hairline strokes that make high-contrast
-     serifs shimmer on a dark background.
-
-     Body and UI are IBM Plex Sans, with IBM Plex Mono for figures. Using one
-     superfamily for both keeps letterforms consistent between prose and data,
-     and drops the total from four families to three. */
+     Newsreader for display, IBM Plex Sans for body and UI, IBM Plex Mono for
+     figures. One superfamily for prose and data keeps them looking related. */
   --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
   --font-eyebrow: "IBM Plex Sans", "Helvetica Neue", sans-serif;
   --font-body: "IBM Plex Sans", "Helvetica Neue", sans-serif;
@@ -75,8 +72,6 @@
 
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
-  /* Nudged up slightly from the previous scale - Plex Sans has a smaller
-     x-height than Manrope, so it needs the extra size to read as easily. */
   --text-base: clamp(1rem, 0.95rem + 0.24vw, 1.09rem);
   --text-lead: clamp(1.1rem, 1.01rem + 0.44vw, 1.34rem);
   --text-h3: clamp(1.35rem, 1.16rem + 0.85vw, 1.85rem);
@@ -86,14 +81,12 @@
 
   --leading-tight: 0.98;
   --leading-snug: 1.18;
-  /* Long-form reading measure. 1.7 rather than 1.62: looser leading is the
-     single cheapest thing that makes a long dark-mode page comfortable. */
   --leading-body: 1.7;
 
   --tracking-eyebrow: 0.2em;
   --tracking-tight: -0.018em;
 
-  /* --- Rhythm ------------------------------------------------------------ */
+  /* --- Rhythm -------------------------------------------------------------- */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -103,11 +96,9 @@
   --space-7: 3rem;
   --space-8: 4.5rem;
   --space-9: 7rem;
-  /* Applied as padding-block, so the gap a reader actually sees between two
-     sections is DOUBLE this value plus the segue margin. The previous 11rem
-     cap produced roughly 350px of dead space on a wide screen. Capped low
-     enough that the top of the next chapter is on screen while the previous
-     one is still being read. */
+  /* Applied as padding-block, so the visible gap between sections is roughly
+     double this value. Capped low enough that the next chapter is on screen
+     while the previous one is still being read. */
   --space-chapter: clamp(2.75rem, 1.9rem + 3.2vw, 5rem);
 
   --gutter: clamp(1.25rem, 0.6rem + 3.1vw, 4rem);
@@ -115,14 +106,16 @@
   --max-w: 1320px;
   --max-w-narrow: 880px;
 
-  /* --- Surface treatment ------------------------------------------------- */
+  /* --- Surface treatment ---------------------------------------------------
+     Light-theme shadows are soft and cool rather than deep: on white, a heavy
+     black shadow reads as dirt, not depth. */
   --radius-sm: 4px;
   --radius: 10px;
   --radius-lg: 18px;
-  --shadow-lift: 0 1px 2px oklch(0% 0 0 / 0.34), 0 12px 32px -12px oklch(10% 0.03 255 / 0.66);
-  --shadow-deep: 0 2px 4px oklch(0% 0 0 / 0.42), 0 40px 80px -28px oklch(10% 0.03 255 / 0.8);
+  --shadow-lift: 0 1px 2px oklch(30% 0.02 255 / 0.08), 0 10px 28px -10px oklch(30% 0.04 255 / 0.16);
+  --shadow-deep: 0 2px 6px oklch(30% 0.02 255 / 0.10), 0 28px 60px -20px oklch(30% 0.05 255 / 0.22);
 
-  /* --- Motion ------------------------------------------------------------ */
+  /* --- Motion -------------------------------------------------------------- */
   --dur-fast: 160ms;
   --dur: 320ms;
   --dur-slow: 720ms;
@@ -131,8 +124,8 @@
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* Light mode is deliberately not offered. This is a single-direction
-   aesthetic - a light variant would dilute it. */
+/* Dark mode is deliberately not offered. One theme, designed properly, beats
+   two half-considered ones. */
 
 @media (prefers-reduced-motion: reduce) {
   :root {
