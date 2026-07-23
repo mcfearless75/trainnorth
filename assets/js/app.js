@@ -130,8 +130,14 @@ function initMobileMenu() {
 
 function initReveal() {
   const targets = $$("[data-reveal]");
+  const showAll = () => targets.forEach((el) => el.classList.add("is-revealed"));
+
+  // Opt into the hidden-then-revealed treatment only now that JS is confirmed
+  // running. Until this line the content is plainly visible.
+  document.documentElement.classList.add("js");
+
   if (REDUCED || !("IntersectionObserver" in window)) {
-    targets.forEach((el) => el.classList.add("is-revealed"));
+    showAll();
     return;
   }
 
@@ -144,6 +150,17 @@ function initReveal() {
   }, { rootMargin: "0px 0px -12% 0px", threshold: 0.1 });
 
   targets.forEach((el) => observer.observe(el));
+
+  // Deadman's switch. If nothing has revealed shortly after load, the observer
+  // is not delivering - a throttled background tab, a non-compositing embed,
+  // an element whose 10% threshold exceeds the viewport - and the page would
+  // otherwise sit blank. Showing everything unanimated beats showing nothing.
+  setTimeout(() => {
+    if (!document.querySelector("[data-reveal].is-revealed")) {
+      observer.disconnect();
+      showAll();
+    }
+  }, 1600);
 }
 
 /* ==========================================================================
