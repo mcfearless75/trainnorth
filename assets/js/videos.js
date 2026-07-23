@@ -21,10 +21,11 @@ const VIDEO_LIBRARY = [
   {
     id: "0xHkEg5-iwU",
     verified: true,
-    title: "Retatrutide — six-week body composition record",
-    channel: "MarcinLabs",
+    title: "Retatrutide — a six-week body composition record",
+    channel: "Creator coverage",
     topic: "Weight loss",
     duration: "PT12M",
+    uploadDate: "2025-11-04",
     summary: "Six weeks of documented change, with the cost and sourcing questions answered directly rather than deflected."
   },
   {
