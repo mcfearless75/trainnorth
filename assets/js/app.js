@@ -15,6 +15,15 @@
 "use strict";
 
 const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Must match slug() in tools/build_pages.py, which generates the page paths.
+   If these two ever disagree the drawer links 404 silently. */
+function compoundSlug(name) {
+  return name.toLowerCase()
+    .replace(/\+/g, " plus ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
@@ -402,7 +411,10 @@ function openDrawer(name, trigger) {
     <div class="drawer__section" id="drawerBuy"></div>
 
     <div class="drawer__section">
-      <button class="btn btn--primary" type="button" data-send-to-calc="${peptide.n}">
+      <a class="btn btn--primary" href="/peptide-library/${compoundSlug(peptide.n)}/">
+        Full page for ${peptide.n} &rarr;
+      </a>
+      <button class="btn btn--ghost" type="button" data-send-to-calc="${peptide.n}" style="margin-top: var(--space-2)">
         Load into calculator
       </button>
     </div>

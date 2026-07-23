@@ -1,0 +1,259 @@
+/* ==========================================================================
+   Sub-page layouts: compound pages, library hub, AI training, contact
+   ========================================================================== */
+
+.subpage main { padding-block: var(--space-7) var(--space-8); }
+
+.pg__crumb {
+  font-family: var(--font-eyebrow);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pg__crumb a { color: var(--text-muted); text-decoration: none; }
+.pg__crumb a:hover { color: var(--signal); }
+
+.pg__head { max-width: 52rem; margin-bottom: var(--space-7); }
+.pg__head h1 { font-size: clamp(2.4rem, 1.6rem + 3.4vw, 4.5rem); margin-block: var(--space-3); }
+
+.pg__badges { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+
+/* The research-use line sits directly under the headline on every sub-page.
+   On a compound page it is the single most load-bearing sentence, so it is
+   never allowed to drift below the fold. */
+.pg__ruo {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-left: 2px solid var(--signal);
+  background: var(--signal-wash);
+  font-family: var(--font-eyebrow);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bone-200);
+}
+
+.pg__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19rem;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (max-width: 60rem) { .pg__grid { grid-template-columns: 1fr; } }
+
+.pg__aside { position: sticky; top: 6rem; }
+@media (max-width: 60rem) { .pg__aside { position: static; } }
+
+.pg__asideh {
+  font-family: var(--font-eyebrow);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: var(--space-3);
+}
+
+.pg__block { margin-bottom: var(--space-7); }
+
+.pg__block h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.pg__list { margin: 0; padding-left: 1.1rem; }
+.pg__list li { margin-bottom: 0.45rem; color: var(--bone-200); }
+
+.pg__ev { margin-bottom: var(--space-3); }
+
+/* Tables scroll inside their own container so a wide price table never makes
+   the page itself scroll sideways. */
+.pg__tablewrap { overflow-x: auto; border: 1px solid var(--hairline); border-radius: var(--radius); }
+
+.pg__table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); min-width: 22rem; }
+
+.pg__table th {
+  text-align: left;
+  font-family: var(--font-eyebrow);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--hairline);
+  background: oklch(19% 0.020 255 / 0.5);
+}
+
+.pg__table td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--hairline); }
+.pg__table tr:last-child td { border-bottom: 0; }
+
+.pg__disclaimer {
+  margin-block: var(--space-7) var(--space-5);
+  padding: var(--space-4);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  max-width: none;
+}
+
+.pg__disclaimer strong { color: var(--bone-200); }
+
+/* --- Library hub grid ---------------------------------------------------- */
+
+.lib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: var(--space-3);
+}
+
+.lib-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+
+.lib-card:hover { border-color: var(--signal-line); transform: translateY(-3px); }
+.lib-card__name { font-family: var(--font-display); font-size: 1.2rem; }
+.lib-card__meta { font-size: 0.6875rem; color: var(--text-dim); }
+.lib-card__blurb { font-size: var(--text-sm); color: var(--text-muted); flex: 1; }
+
+/* --- AI training --------------------------------------------------------- */
+
+.prompt {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: oklch(19% 0.020 255 / 0.55);
+  margin-bottom: var(--space-4);
+  overflow: hidden;
+}
+
+.prompt__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.prompt__title {
+  font-family: var(--font-eyebrow);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bone-200);
+}
+
+.prompt pre {
+  margin: 0;
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--bone-200);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.prompt__copy { white-space: nowrap; }
+.prompt__copy[data-copied="true"] { border-color: var(--ev-strong); color: var(--ev-strong); }
+
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--signal);
+}
+
+.steps h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+.steps p { font-size: var(--text-sm); color: var(--text-muted); margin: 0; }
+
+/* --- Contact / age gate -------------------------------------------------- */
+
+.gate {
+  padding: var(--space-5);
+  border: 1px solid var(--signal-line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(165deg, oklch(24% 0.04 245 / 0.4), oklch(17% 0.018 255 / 0.6));
+  max-width: 40rem;
+}
+
+.gate__check { display: flex; gap: var(--space-3); padding-block: var(--space-3); align-items: flex-start; }
+.gate__check input { margin-top: 0.25rem; accent-color: var(--signal); flex: none; width: 1.05rem; height: 1.05rem; }
+.gate__check span { font-size: var(--text-sm); color: var(--bone-200); }
+
+.gate__btn { margin-top: var(--space-4); }
+.gate__btn[disabled] { opacity: 0.4; pointer-events: none; }
+
+.enquiry { max-width: 40rem; }
+.enquiry[hidden] { display: none; }
+
+.enquiry .field-row { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.enquiry textarea { min-height: 6rem; resize: vertical; }
+
+.enquiry textarea,
+.enquiry input,
+.enquiry select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: var(--ink-900);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.enquiry textarea:focus,
+.enquiry input:focus,
+.enquiry select:focus { border-color: var(--signal); outline: none; }
+
+.contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: var(--space-3); margin-bottom: var(--space-6); }
+
+.contact-card {
+  display: block;
+  padding: var(--space-5);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+
+.contact-card:hover { border-color: var(--signal); transform: translateY(-3px); }
+.contact-card h2 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.35rem; }
+.contact-card p { font-size: var(--text-sm); color: var(--text-muted); margin: 0; }
+.contact-card__val { display: block; margin-top: var(--space-3); font-family: var(--font-mono); font-size: var(--text-sm); color: var(--signal); }
