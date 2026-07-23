@@ -1258,6 +1258,25 @@
 
 @media (max-width: 860px) { .supply { grid-template-columns: 1fr; } }
 
+/* WhatsApp uses its own recognised green rather than the site accent. The
+   colour is the affordance here: people identify the channel before they read
+   the label, and a blue button would not read as WhatsApp. */
+.btn--whatsapp {
+  --btn-bg: oklch(72% 0.155 152);
+  --btn-fg: oklch(17% 0.03 152);
+  --btn-border: oklch(72% 0.155 152);
+}
+
+.btn--whatsapp::before { background: oklch(82% 0.130 152); }
+
+.btn--whatsapp:hover,
+.btn--whatsapp:focus-visible {
+  color: oklch(17% 0.03 152);
+  border-color: oklch(82% 0.130 152);
+}
+
+.btn--whatsapp svg { flex: none; }
+
 .code-chip {
   display: inline-flex;
   align-items: center;
