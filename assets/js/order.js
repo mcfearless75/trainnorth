@@ -203,6 +203,15 @@ function init() {
   if (!$("#ordLines")) return;
   load();
 
+  // Live shipping rates, if the supplier's table has any. Absent rates keep
+  // the "quoted by supplier" wording; present rates complete the estimate.
+  if (window.TNL_BACKEND) {
+    window.TNL_BACKEND.loadShipping().then((rates) => {
+      Object.assign(SHIPPING, rates);
+      renderMaterials();
+    });
+  }
+
   const sel = $("#ordCountry");
   if (sel && typeof SHIP_TO !== "undefined") {
     sel.innerHTML = '<option value="">Select country</option>' +
@@ -236,6 +245,17 @@ function init() {
       return;
     }
     $("#ordError").hidden = true;
+
+    if (window.TNL_BACKEND) {
+      const tl = totals();
+      window.TNL_BACKEND.logEnquiry({
+        source: "order",
+        items: basket.map((b) => ({ ref: b.ref, label: b.label, qty: b.qty })),
+        boxes: basket.reduce((n, b) => n + b.qty, 0),
+        value_usd: Math.round(tl.total),
+        country: countryCode() || "unset"
+      });
+    }
 
     /* Commission signal. Records that an enquiry left for the supplier, with
        enough to reconcile against their referral statements: value, size and

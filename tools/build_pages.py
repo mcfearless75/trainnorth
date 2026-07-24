@@ -23,7 +23,7 @@ import json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://trainnorthlabs.com"
 WA = "85256440181"
-ASSET_V = "v=20260723h"
+ASSET_V = "v=20260724a"
 
 # --------------------------------------------------------------------------
 # Read the JS data files rather than duplicating them
@@ -217,6 +217,7 @@ FOOT = f"""</main>
   </div>
 </footer>
 
+<script src="/assets/js/backend.js?{ASSET_V}"></script>
 <script src="/assets/js/peptides.js?{ASSET_V}"></script>
 <script src="/assets/js/products.js?{ASSET_V}"></script>
 <script src="/assets/js/pages.js?{ASSET_V}" defer></script>

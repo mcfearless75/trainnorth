@@ -356,6 +356,14 @@ function init() {
   renderCatalogue();
   renderBasket();
 
+  // Live prices can land after first paint; rebuild the item set, keeping the
+  // active filter, and redraw both the grid and the summary bar.
+  window.addEventListener("tnl:prices", () => {
+    items = buildCatalogue();
+    renderCatalogue();
+    renderBar();
+  });
+
   $("#catFilters")?.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-cat]");
     if (!btn) return;

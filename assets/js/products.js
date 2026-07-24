@@ -146,7 +146,14 @@ function buildCatalogue() {
       route: p ? p.route : null,
       half: p ? p.half : null,
       evidence: p && typeof evidenceTier === "function" ? evidenceTier(p) : null,
-      variants: prod.variants.slice()
+      // Live price override when the backend has loaded it, embedded price
+      // otherwise. Keeps the catalogue working with no network.
+      variants: prod.variants.map((v) => ({
+        ...v,
+        price: (window.TNL_BACKEND
+          ? window.TNL_BACKEND.priceFor(prod.name, v.label, v.price)
+          : v.price)
+      }))
     };
   });
 
