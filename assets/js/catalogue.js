@@ -21,7 +21,6 @@ const WHATSAPP_NUMBER = "85256440181";
 let items = [];
 let filter = "all";
 let basket = [];
-let shipTo = "";
 
 /* --- Money ---------------------------------------------------------------
    Prices arrive from a spreadsheet, so treat anything non-numeric as absent
@@ -153,15 +152,7 @@ function openSpec(ref) {
     <p class="muted" style="font-size:var(--text-sm)">${item.blurb}</p>
     ${item.lib ? `<button class="spec__evidence" type="button" data-evidence="${encodeURIComponent(item.lib)}">See the evidence for ${item.lib} &rarr;</button>` : ""}
 
-    <div class="field" style="margin-top:var(--space-5)">
-      <label for="specShip">Shipping destination</label>
-      <select id="specShip">
-        <option value="">Select destination</option>
-        ${SHIP_TO.map((s) => `<option value="${s.code}" ${s.code === shipTo ? "selected" : ""}>${s.label}</option>`).join("")}
-      </select>
-    </div>
-
-    <div class="spec__variants">
+    <div class="spec__variants" style="margin-top:var(--space-5)">
       ${item.variants.map((v, i) => `
         <label class="spec__variant">
           <input type="radio" name="specVariant" value="${i}" ${i === 0 ? "checked" : ""}>
@@ -211,8 +202,6 @@ function addFromSpec() {
   const qty = Math.max(1, Math.min(99, parseInt(qtyEl?.value, 10) || 1));
   const variant = item.variants[idx];
   if (!variant) return;
-
-  shipTo = $("#specShip")?.value || shipTo;
 
   const key = item.name + "|" + variant.label;
   const existing = basket.find((b) => b.key === key);
@@ -279,36 +268,9 @@ function renderBasket() {
     </p>`;
 }
 
-/* --- Enquiry compiler ---------------------------------------------------- */
-
-function buildEnquiry() {
-  const t = basketTotals();
-  const dest = SHIP_TO.find((s) => s.code === shipTo);
-
-  const lines = [
-    "Hello, I would like to make a research enquiry.",
-    "",
-    dest ? "Shipping destination: " + dest.label : null,
-    "",
-    "Items (Research Use Only, not for human consumption):"
-  ].filter((l) => l !== null);
-
-  basket.forEach((b) => {
-    lines.push(`- ${b.ref} ${b.label} x ${b.vials || 10} vials, ${b.qty} box${b.qty === 1 ? "" : "es"}${isPriced(b.price) ? " (" + money(b.price) + " per box)" : ""}`);
-  });
-
-  if (t.subtotal > 0) {
-    lines.push("");
-    lines.push(`Indicative total: ${money(t.total)}`);
-  }
-
-  lines.push("");
-  lines.push("Please confirm availability, current pricing, shipping cost and certificate of analysis.");
-  lines.push("");
-  lines.push("Ref: " + REF_TAG);
-
-  return lines.join("\n");
-}
+/* The enquiry message is compiled on the /order/ page now, where the full
+   shipping address and contact details are collected. The basket only carries
+   product data here, then hands off. */
 
 /* --- Sticky summary bar --------------------------------------------------
    A fixed bar rather than only a sidebar. On a phone the sidebar scrolls away
