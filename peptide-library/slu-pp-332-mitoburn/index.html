@@ -17,11 +17,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/tokens.css?v=20260724b">
-<link rel="stylesheet" href="/assets/css/base.css?v=20260724b">
-<link rel="stylesheet" href="/assets/css/sections.css?v=20260724b">
-<link rel="stylesheet" href="/assets/css/catalogue.css?v=20260724b">
-<link rel="stylesheet" href="/assets/css/pages.css?v=20260724b">
+<link rel="stylesheet" href="/assets/css/tokens.css?v=20260724c">
+<link rel="stylesheet" href="/assets/css/base.css?v=20260724c">
+<link rel="stylesheet" href="/assets/css/sections.css?v=20260724c">
+<link rel="stylesheet" href="/assets/css/catalogue.css?v=20260724c">
+<link rel="stylesheet" href="/assets/css/pages.css?v=20260724c">
 <script defer data-domain="trainnorthlabs.com" src="https://plausible.io/js/script.outbound-links.tagged-events.js"></script>
 <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
 <script type="application/ld+json">{
@@ -178,13 +178,14 @@
         <h2>Available as research material</h2>
         <div class="pg__tablewrap">
           <table class="pg__table">
-            <thead><tr><th>Product</th><th>Specification</th><th>Per box</th></tr></thead>
-            <tbody><tr><td>SLU-PP-332 (MitoBurn)</td><td class='mono'>5mg &times; 10</td><td class='mono'>$205.5</td></tr></tbody>
+            <thead><tr><th>Product</th><th>Strengths</th><th>Per box</th><th></th></tr></thead>
+            <tbody><tr><td>SLU-PP-332 (MitoBurn)</td><td class='mono'>5mg</td><td class='mono'>from $205.5</td><td><button class='btn btn--sm btn--primary' type='button' data-spec='SLU-PP-332 (MitoBurn)'>Select</button></td></tr></tbody>
           </table>
         </div>
         <p class="dim" style="font-size:var(--text-xs)">From $205.5 per box. One price is one box, not one vial. Supplied by an independent laboratory supplier, not by TRAINNORTH:LABS.</p>
-        <a class="btn btn--primary btn--whatsapp" target="_blank" rel="noopener noreferrer"
-           href="https://wa.me/85256440181?text=Hello, I would like to make a research enquiry.%0A%0ACompound: SLU-PP-332 (MitoBurn)%0A%0APlease confirm availability, pricing, shipping and certificate of analysis. Research Use Only, not for human consumption.%0A%0ARef: TN-REF5">Research enquiry via WhatsApp</a>
+        <div class="hero__actions">
+          <a class="btn btn--ghost" href="/research-materials/">See the full price list &rarr;</a>
+        </div>
       </section>
 
     <p class="pg__disclaimer">
@@ -197,6 +198,26 @@
     <a class="btn btn--ghost" href="/peptide-library/">&larr; Back to the library</a>
   </div>
 </article>
+
+<div class="spec" id="specModal" data-open="false" hidden role="dialog" aria-modal="true" aria-label="Select specification">
+  <button class="spec__scrim" type="button" aria-label="Close"></button>
+  <div class="spec__panel">
+    <button class="drawer__close" type="button" id="specClose" aria-label="Close">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+    <div id="specBody"></div>
+  </div>
+</div>
+<div class="cat-bar" id="catBar" hidden>
+  <div class="cat-bar__meta">
+    <span class="cat-bar__count" id="barCount"></span>
+    <span class="cat-bar__note" id="barNote"></span>
+  </div>
+  <div class="cat-bar__right">
+    <span class="cat-bar__total" id="barTotal"></span>
+    <button class="btn btn--sm btn--primary" type="button" id="barSend">Research enquiry &rarr;</button>
+  </div>
+</div>
 </main>
 
 <footer class="footer">
@@ -242,9 +263,13 @@
   </div>
 </footer>
 
-<script src="/assets/js/backend.js?v=20260724b"></script>
-<script src="/assets/js/peptides.js?v=20260724b"></script>
-<script src="/assets/js/products.js?v=20260724b"></script>
-<script src="/assets/js/pages.js?v=20260724b" defer></script>
+<script src="/assets/js/backend.js?v=20260724c"></script>
+<script src="/assets/js/peptides.js?v=20260724c"></script>
+<script src="/assets/js/products.js?v=20260724c"></script>
+<script src="/assets/js/pages.js?v=20260724c" defer></script>
+<!-- Buy machinery. Harmless on pages without a grid or spec modal: init()
+     no-ops when neither is present. Present on compound pages so their Select
+     buttons open the same spec popup and basket journey as the price list. -->
+<script src="/assets/js/catalogue.js?v=20260724c" defer></script>
 </body>
 </html>

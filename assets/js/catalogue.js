@@ -348,19 +348,27 @@ function sendEnquiry() {
 
 function init() {
   const grid = $("#catGrid");
-  if (!grid || typeof buildCatalogue !== "function") return;
+  const modal = $("#specModal");
+  // Runs on any page carrying the buy machinery: the full catalogue (grid),
+  // or a compound page that has only the spec modal and sticky bar. Bail only
+  // when neither is present.
+  if (typeof buildCatalogue !== "function" || (!grid && !modal)) return;
 
   items = buildCatalogue();
   loadBasket();
-  categoryTabs();
-  renderCatalogue();
   renderBasket();
+  renderBar();
 
-  // Live prices can land after first paint; rebuild the item set, keeping the
-  // active filter, and redraw both the grid and the summary bar.
+  if (grid) {
+    categoryTabs();
+    renderCatalogue();
+  }
+
+  // Live prices can land after first paint; rebuild the item set and redraw
+  // whatever this page shows.
   window.addEventListener("tnl:prices", () => {
     items = buildCatalogue();
-    renderCatalogue();
+    if (grid) renderCatalogue();
     renderBar();
   });
 
@@ -394,11 +402,14 @@ function init() {
       if (typeof window.closeCompound === "function") window.closeCompound();
       openSpec(decodeURIComponent(buy.dataset.openProduct));
     }
-  });
 
-  grid.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-spec]");
-    if (btn) openSpec(decodeURIComponent(btn.dataset.spec));
+    // Document-wide so the spec popup opens from grid cards AND from the buy
+    // buttons on a compound page, which have no grid.
+    const spec = e.target.closest("[data-spec]");
+    if (spec) {
+      e.preventDefault();
+      openSpec(decodeURIComponent(spec.dataset.spec));
+    }
   });
 
   $("#specModal")?.addEventListener("click", (e) => {

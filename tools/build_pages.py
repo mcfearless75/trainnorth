@@ -23,7 +23,7 @@ import json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://trainnorthlabs.com"
 WA = "85256440181"
-ASSET_V = "v=20260724b"
+ASSET_V = "v=20260724c"
 
 # --------------------------------------------------------------------------
 # Read the JS data files rather than duplicating them
@@ -221,9 +221,37 @@ FOOT = f"""</main>
 <script src="/assets/js/peptides.js?{ASSET_V}"></script>
 <script src="/assets/js/products.js?{ASSET_V}"></script>
 <script src="/assets/js/pages.js?{ASSET_V}" defer></script>
+<!-- Buy machinery. Harmless on pages without a grid or spec modal: init()
+     no-ops when neither is present. Present on compound pages so their Select
+     buttons open the same spec popup and basket journey as the price list. -->
+<script src="/assets/js/catalogue.js?{ASSET_V}" defer></script>
 </body>
 </html>
 """
+
+# Spec modal + sticky summary bar. Injected into any compound page that lists
+# products, so the Select buttons have a popup to open and a bar to fill.
+BUY_MACHINERY = '''
+<div class="spec" id="specModal" data-open="false" hidden role="dialog" aria-modal="true" aria-label="Select specification">
+  <button class="spec__scrim" type="button" aria-label="Close"></button>
+  <div class="spec__panel">
+    <button class="drawer__close" type="button" id="specClose" aria-label="Close">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+    <div id="specBody"></div>
+  </div>
+</div>
+<div class="cat-bar" id="catBar" hidden>
+  <div class="cat-bar__meta">
+    <span class="cat-bar__count" id="barCount"></span>
+    <span class="cat-bar__note" id="barNote"></span>
+  </div>
+  <div class="cat-bar__right">
+    <span class="cat-bar__total" id="barTotal"></span>
+    <button class="btn btn--sm btn--primary" type="button" id="barSend">Research enquiry &rarr;</button>
+  </div>
+</div>
+'''
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -254,11 +282,16 @@ def compound_page(p):
 
     buy = ""
     if prods:
+        # One row per product form, each with a "Select" button that opens the
+        # shared spec popup (choose strength + quantity) and drops it into the
+        # basket, then the same order/shipping/WhatsApp journey as the price
+        # list. data-spec carries the product name catalogue.js matches on.
         rows = "".join(
-            "".join(
-                f"<tr><td>{esc(pr['name'])}</td><td class='mono'>{v['label']} &times; {v.get('vials',10)}</td>"
-                f"<td class='mono'>${v['price']}</td></tr>"
-                for v in pr["variants"])
+            f"<tr><td>{esc(pr['name'])}</td>"
+            f"<td class='mono'>{' &middot; '.join(v['label'] for v in pr['variants'])}</td>"
+            f"<td class='mono'>from ${min(v['price'] for v in pr['variants'])}</td>"
+            f"<td><button class='btn btn--sm btn--primary' type='button' "
+            f"data-spec='{esc(pr['name'])}'>Select</button></td></tr>"
             for pr in prods)
         cheapest = min(v["price"] for pr in prods for v in pr["variants"])
         buy = f"""
@@ -266,18 +299,15 @@ def compound_page(p):
         <h2>Available as research material</h2>
         <div class="pg__tablewrap">
           <table class="pg__table">
-            <thead><tr><th>Product</th><th>Specification</th><th>Per box</th></tr></thead>
+            <thead><tr><th>Product</th><th>Strengths</th><th>Per box</th><th></th></tr></thead>
             <tbody>{rows}</tbody>
           </table>
         </div>
         <p class="dim" style="font-size:var(--text-xs)">From ${cheapest} per box. One price is one box, not one vial. Supplied by an independent laboratory supplier, not by TRAINNORTH:LABS.</p>
-        <a class="btn btn--primary btn--whatsapp" target="_blank" rel="noopener noreferrer"
-           href="https://wa.me/{WA}?text={{WA_TEXT}}">Research enquiry via WhatsApp</a>
+        <div class="hero__actions">
+          <a class="btn btn--ghost" href="/research-materials/">See the full price list &rarr;</a>
+        </div>
       </section>"""
-        wa_text = ("Hello, I would like to make a research enquiry.%0A%0A"
-                   f"Compound: {p['n']}%0A%0APlease confirm availability, pricing, shipping and certificate of "
-                   "analysis. Research Use Only, not for human consumption.%0A%0ARef: TN-REF5")
-        buy = buy.replace("{WA_TEXT}", wa_text)
 
     ld = json.dumps({
         "@context": "https://schema.org",
@@ -384,10 +414,13 @@ def compound_page(p):
   </div>
 </article>
 """
+    # Only compound pages that actually list products need the popup + bar.
+    machinery = BUY_MACHINERY if prods else ""
+
     return write(f"peptide-library/{sl}/index.html",
                  head(f"{p['n']} — Evidence, Handling & Reconstitution | TRAINNORTH:LABS",
                       f"{p['ben'][0]}. Evidence graded as {label.lower()}. Route {p['route']}, half-life {p['half']}. Research use only.",
-                      url, extra) + body + FOOT)
+                      url, extra) + body + machinery + FOOT)
 
 # --------------------------------------------------------------------------
 # Library hub
