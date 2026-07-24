@@ -33,6 +33,40 @@ window.TNL_BACKEND = (function () {
   const livePrices = new Map();
   let pricesReady = false;
 
+  /* WhatsApp number pool. Enquiries are spread across these so no single
+     supplier number collects enough cold first-contacts to get flagged. The
+     fallback is the first pooled number, so even with no network an enquiry
+     still reaches an intended destination rather than breaking. */
+  const DEFAULT_WA = "85267941621";
+  let waPool = [DEFAULT_WA];
+
+  async function loadNumbers() {
+    try {
+      const r = await fetch(REST + "whatsapp_numbers?select=number&active=eq.true", { headers: HEADERS });
+      if (!r.ok) return;
+      const rows = await r.json();
+      const nums = rows.map((row) => String(row.number).replace(/[^0-9]/g, "")).filter(Boolean);
+      if (nums.length) {
+        waPool = nums;
+        rewriteLinks();
+      }
+    } catch (e) { /* offline: fallback pool stands */ }
+  }
+
+  function pickNumber() {
+    return waPool[Math.floor(Math.random() * waPool.length)] || DEFAULT_WA;
+  }
+
+  /* Static "message the supplier" links carry data-wa. Each gets a freshly
+     picked number on load, keeping any pre-filled ?text= intact. */
+  function rewriteLinks() {
+    document.querySelectorAll("a[data-wa]").forEach((a) => {
+      const href = a.getAttribute("href") || "";
+      const text = href.includes("?") ? href.slice(href.indexOf("?")) : "";
+      a.setAttribute("href", "https://wa.me/" + pickNumber() + text);
+    });
+  }
+
   async function loadPrices() {
     try {
       const r = await fetch(REST + "prices?select=product_name,variant_label,price_usd", { headers: HEADERS });
@@ -71,7 +105,8 @@ window.TNL_BACKEND = (function () {
         items: (payload.items || []).map((i) => ({ ref: i.ref, label: i.label, qty: i.qty })),
         boxes: payload.boxes || 0,
         value_usd: payload.value_usd || 0,
-        country: payload.country || "unset"
+        country: payload.country || "unset",
+        wa_number: payload.wa_number || "unset"
       });
       // keepalive lets the request survive the tab navigating to WhatsApp.
       fetch(URL + "/functions/v1/log-enquiry", {
@@ -84,6 +119,7 @@ window.TNL_BACKEND = (function () {
   }
 
   loadPrices();
+  loadNumbers();
 
-  return { priceFor, loadShipping, logEnquiry, pricesReady: () => pricesReady };
+  return { priceFor, loadShipping, logEnquiry, pickNumber, pricesReady: () => pricesReady };
 })();

@@ -22,8 +22,8 @@ import json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://trainnorthlabs.com"
-WA = "85256440181"
-ASSET_V = "v=20260724d"
+WA = "85267941621"  # static-link fallback; rotated live by backend.js data-wa
+ASSET_V = "v=20260724e"
 
 # --------------------------------------------------------------------------
 # Read the JS data files rather than duplicating them
@@ -193,7 +193,7 @@ FOOT = f"""</main>
         <h2>Contact</h2>
         <ul>
           <li><a href="mailto:health@trainnorthlabs.com">health@trainnorthlabs.com</a></li>
-          <li><a href="https://wa.me/{WA}" target="_blank" rel="noopener noreferrer">Supplier WhatsApp: +852 5644 0181</a></li>
+          <li><a data-wa href="https://wa.me/{WA}" target="_blank" rel="noopener noreferrer">Message the supplier on WhatsApp</a></li>
           <li><a href="/contact/">Contact page</a></li>
         </ul>
       </div>

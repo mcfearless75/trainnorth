@@ -12,7 +12,7 @@
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const WA = "85256440181";
+const WA = "85267941621"; // fallback only; live rotation via TNL_BACKEND.pickNumber()
 
 /* --- Masthead ------------------------------------------------------------ */
 
@@ -150,16 +150,19 @@ $$("[data-copy]").forEach((btn) => {
         country: $("#eqCountry")?.value || "unset"
       }});
     }
+    const waNumber = (window.TNL_BACKEND && window.TNL_BACKEND.pickNumber)
+      ? window.TNL_BACKEND.pickNumber() : WA;
     if (window.TNL_BACKEND) {
       window.TNL_BACKEND.logEnquiry({
         source: "contact",
         items: [{ ref: ($("#eqMaterial")?.value || "unspecified").trim() || "unspecified", label: "-", qty: parseInt($("#eqQty")?.value, 10) || 1 }],
         boxes: parseInt($("#eqQty")?.value, 10) || 1,
         value_usd: 0,
-        country: $("#eqCountry")?.value || "unset"
+        country: $("#eqCountry")?.value || "unset",
+        wa_number: waNumber
       });
     }
-    window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(compose()), "_blank", "noopener,noreferrer");
+    window.open("https://wa.me/" + waNumber + "?text=" + encodeURIComponent(compose()), "_blank", "noopener,noreferrer");
   });
 
   $("#eqEmailBtn")?.addEventListener("click", () => {

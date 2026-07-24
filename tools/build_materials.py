@@ -139,7 +139,7 @@ def build() -> str:
       </ol>
       <p class="wa-number">
         <span class="wa-number__label">Supplier WhatsApp</span>
-        <a href="https://wa.me/{WA}" target="_blank" rel="noopener noreferrer">+852 5644 0181</a>
+        <a data-wa href="https://wa.me/{WA}" target="_blank" rel="noopener noreferrer">Message the supplier on WhatsApp</a>
       </p>
     </section>
 

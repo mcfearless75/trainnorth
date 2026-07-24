@@ -19,7 +19,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
 const STORAGE_KEY = "tnl.basket.v1";
-const WHATSAPP_NUMBER = "85256440181";
+const WHATSAPP_NUMBER = "85267941621"; // fallback only; live rotation via TNL_BACKEND.pickNumber()
 /* Attribution tag only. No discount is offered or calculated; the tag is
    appended to the enquiry so supplier-side referrals reconcile. */
 const REF_TAG = "TN-REF5";
@@ -246,6 +246,11 @@ function init() {
     }
     $("#ordError").hidden = true;
 
+    // One number picked here, used for BOTH the message and the ledger, so
+    // reconciliation always matches the number the enquiry actually went to.
+    const waNumber = (window.TNL_BACKEND && window.TNL_BACKEND.pickNumber)
+      ? window.TNL_BACKEND.pickNumber() : WHATSAPP_NUMBER;
+
     if (window.TNL_BACKEND) {
       const tl = totals();
       window.TNL_BACKEND.logEnquiry({
@@ -253,7 +258,8 @@ function init() {
         items: basket.map((b) => ({ ref: b.ref, label: b.label, qty: b.qty })),
         boxes: basket.reduce((n, b) => n + b.qty, 0),
         value_usd: Math.round(tl.total),
-        country: countryCode() || "unset"
+        country: countryCode() || "unset",
+        wa_number: waNumber
       });
     }
 
@@ -274,7 +280,7 @@ function init() {
       }});
     }
 
-    window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(compose()),
+    window.open("https://wa.me/" + waNumber + "?text=" + encodeURIComponent(compose()),
                 "_blank", "noopener,noreferrer");
   });
 }

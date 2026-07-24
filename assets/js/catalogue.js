@@ -16,7 +16,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
 const STORAGE_KEY = "tnl.basket.v1";
-const WHATSAPP_NUMBER = "85256440181";
+const WHATSAPP_NUMBER = "85267941621"; // fallback only; live rotation via TNL_BACKEND.pickNumber()
 
 let items = [];
 let filter = "all";

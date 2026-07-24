@@ -234,10 +234,10 @@ def contact():
         <p>Research, content and correction enquiries. Corrections with a citation are genuinely welcome.</p>
         <span class="contact-card__val">health@trainnorthlabs.com</span>
       </a>
-      <a class="contact-card" href="https://wa.me/{WA}" target="_blank" rel="noopener noreferrer">
+      <a class="contact-card" data-wa href="https://wa.me/{WA}" target="_blank" rel="noopener noreferrer">
         <h2>Supplier WhatsApp</h2>
         <p>Goes to the independent supplier, not to TRAINNORTH:LABS. Availability, pricing and shipping.</p>
-        <span class="contact-card__val">+852 5644 0181</span>
+        <span class="contact-card__val">Message on WhatsApp &rarr;</span>
       </a>
     </div>
 
