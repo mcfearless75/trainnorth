@@ -347,6 +347,35 @@
   overflow: hidden;
 }
 
+/* Animated hero backdrop. A stand-in for a video loop, built in CSS so it
+   costs nothing to serve and cannot be blocked: two large steel-blue light
+   fields drift slowly across each other, giving the static hero the same
+   quiet, shifting laboratory-dawn feel a short film would. Sits behind the
+   content, never competes with it, and holds still under reduced-motion. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  z-index: 0;
+  background:
+    radial-gradient(34rem 30rem at 22% 30%, oklch(72% 0.09 240 / 0.5), transparent 60%),
+    radial-gradient(40rem 34rem at 78% 68%, oklch(80% 0.06 210 / 0.42), transparent 62%);
+  filter: blur(24px);
+  animation: hero-drift 26s var(--ease-in-out) infinite alternate;
+}
+
+.hero > * { position: relative; z-index: 1; }
+
+@keyframes hero-drift {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1.05); }
+  50%  { transform: translate3d(2%, 3%, 0) scale(1.12); }
+  100% { transform: translate3d(4%, -1%, 0) scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before { animation: none; }
+}
+
 .hero__grid {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);

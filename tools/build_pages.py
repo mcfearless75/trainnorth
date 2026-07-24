@@ -23,7 +23,7 @@ import json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://trainnorthlabs.com"
 WA = "85256440181"
-ASSET_V = "v=20260724a"
+ASSET_V = "v=20260724b"
 
 # --------------------------------------------------------------------------
 # Read the JS data files rather than duplicating them

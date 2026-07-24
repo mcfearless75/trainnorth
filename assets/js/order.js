@@ -90,7 +90,7 @@ function renderMaterials() {
     ${t.products > 0 ? `
       <div class="ord-row"><span>Products</span><span class="mono">${money(t.products)}</span></div>
       <div class="ord-row"><span>Shipping${countryName() ? " (" + countryName() + ")" : ""}</span>
-        <span class="mono">${ship ? money(ship.cost) + " · " + ship.days + " days" : "Quoted by supplier"}</span></div>
+        <span class="mono">${ship ? money(ship.cost) + (ship.days ? " · " + ship.days + " days" : "") : "Quoted by supplier"}</span></div>
       <div class="ord-row ord-row--total"><span>${ship ? "Estimated total" : "Estimated total excl. shipping"}</span><span class="mono">${money(t.total)} USD</span></div>
     ` : ""}
     ${t.unpriced ? `<p class="dim" style="font-size:var(--text-xs); margin-top:var(--space-3)">${t.unpriced} box${t.unpriced === 1 ? "" : "es"} priced on enquiry.</p>` : ""}
